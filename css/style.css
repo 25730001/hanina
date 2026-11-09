@@ -79,3 +79,21 @@ li{margin-bottom:6px}
 .broken{visibility:hidden}
 .note{font-size:12px;color:var(--mut)}
 .grp{flex-wrap:wrap;overflow:visible;white-space:normal}
+/* ===== 피드백 반영: 검색 보드 · 썸네일 태그 필터 · 외부 데이터 ===== */
+.top{justify-content:space-between}
+.board{margin:4px 0 6px;padding:12px;border-radius:16px;background:var(--fill)}
+.board .in{background:var(--bg);font-size:16px;padding:12px 14px}
+.board .filters{margin-top:0}
+.board .in{margin-top:6px}
+.board .chip{background:var(--bg)}
+.board .chip.on{background:var(--ac);color:var(--acfg)}
+.chip:disabled{opacity:.4;cursor:default}
+#home-search{margin:0 0 4px}
+button.bd{border:0;font:inherit;font-size:11px;line-height:1.5;padding:1px 7px;cursor:pointer}
+button.bd.on{background:var(--ac);color:var(--acfg)}
+.tools{display:flex;gap:6px}
+.suggest{margin:12px 0 0;color:var(--fg)}
+.empty button+button{margin-left:6px}
+.board .note{margin:8px 0 0}
+.link{background:none;padding:0;font-size:12px;text-decoration:underline;color:var(--fg)}
+.eng+div .bd{background:var(--fill)}

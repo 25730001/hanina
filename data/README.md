@@ -19,7 +19,7 @@
 | 항목 | 내용 |
 |---|---|
 | 방식 | **저장 JSON 사용** (`meta.source: "json"`), 화면에 `JSON` 칩 표시 |
-| 외부 API | **API 미연동** (`meta.api` 없음) |
+| 외부 데이터 호출 | **연동** — `js/app.js`의 `loadApi()`가 Free Exercise DB 원본(`https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json`)을 `fetch`로 불러와 `meta.sourceId`로 연결. 쓰는 근육(primaryMuscles·secondaryMuscles), 동작 유형(force→밀기/당기기/버티기, mechanic→복합/고립)을 화면에서 붙임. 실패하면 저장 JSON만으로 동작하고 동작 조건 버튼은 비활성 |
 | JSON 호출 위치 | `js/app.js`의 `loadData()`가 `./data/exercises.json`을 `fetch`로 불러옴 |
 | 불러오기 실패 시 | 화면에 안내 문구와 `다시 시도` 버튼 표시 (파일을 더블클릭해서 열면 실패하므로 GitHub Pages 주소에서 확인) |
 | 이미지 | 1~16번은 `asset/` 폴더 파일, 17~300번은 원본 저장소 이미지 주소(`https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/<sourceId>/0.jpg`) 사용 |
