@@ -123,6 +123,8 @@ function listHTML() {
     + '<span class="tools"><select data-sort aria-label="정렬">' + Object.keys(SORTERS).map(function (k) {
         return '<option value="' + k + '"' + (S.sort == k ? " selected" : "") + ">" + SORT_LABEL[k] + "</option>";
       }).join("") + '</select><button data-reset aria-label="전체 조건 초기화">↺</button></span></div>';
+  /* 더미 필드로 거르는 조건이면 실습용 값이라는 안내를 함께 보여 줌 */
+  if (S.filters.indexOf("guide") >= 0) bar += '<p class="note">설명이 있는 운동은 16개예요. 이 설명은 수업 실습용으로 AI가 쓴 예시라서 전문가 검수를 거치지 않았어요.</p>';
   if (!r.length) {
     var tokens = S.picked.slice(); if (S.q) tokens.unshift("q:");
     var rm = tokens.slice().reverse().filter(function (t) { return results(without(t)).length; })[0];
