@@ -43,7 +43,7 @@ var FILTER_RULES = {
   compound:  function (x) { return x.mechanic === "복합"; },
   isolation: function (x) { return x.mechanic === "고립"; }
 };
-var FILTER_LABEL = { guide: "설명 있는 운동", push: "미는 운동", pull: "당기는 운동", compound: "여러 근육 함께", isolation: "한 부위 집중" };
+var FILTER_LABEL = { guide: "설명이 있는 운동", push: "미는 운동", pull: "당기는 운동", compound: "여러 근육 같이", isolation: "한 부위만 집중" };
 var NEED_API = { push: 1, pull: 1, compound: 1, isolation: 1 };   // 외부 데이터가 있어야 쓸 수 있는 조건
 
 /* ---------- 정렬 (9주차 2.1) ---------- */
@@ -54,7 +54,7 @@ var SORTERS = {
   level:    function (a, b) { return LV.indexOf(a.difficulty) - LV.indexOf(b.difficulty) || byName(a, b); },
   beginner: function (a, b) { return easyScore(b) - easyScore(a) || byName(a, b); }   // 초급·머신·맨몸·설명 있는 운동 먼저
 };
-var SORT_LABEL = { name: "이름순", level: "난이도순", beginner: "초보자 추천순" };
+var SORT_LABEL = { name: "이름 가나다순", level: "쉬운 운동부터", beginner: "초보자 추천순" };   // 정렬 방향이 문구로 보이게
 
 /* ---------- 검색·필터 → 하나의 결과 배열 (9주차 1.2·1.4·2.2.2) ---------- */
 function norm(t) { return String(t || "").replace(/\s/g, "").toLowerCase(); }
@@ -81,10 +81,12 @@ function without(t) {
   else st.f[a[0]] = st.f[a[0]].filter(function (v) { return v !== a[1]; });
   return st;
 }
-function tokenLabel(t) { var a = t.split(":"); return a[0] === "c" ? FILTER_LABEL[a[1]] : a[0] === "q" ? "검색어 “" + esc(S.q) + "”" : a[1]; }
+function tokenLabel(t) { var a = t.split(":"); return a[0] === "c" ? FILTER_LABEL[a[1]] : a[0] === "q" ? "검색어" : a[1]; }
 
 /* ---------- 화면 조각 ---------- */
 function get(id) { return EX.filter(function (x) { return x.id == id; })[0]; }
+/* 받침에 따라 을/를 고르기 */
+function eul(w) { w = String(w || ""); var c = w.charCodeAt(w.length - 1) - 0xac00; return c >= 0 && c <= 11171 && c % 28 ? "을" : "를"; }
 function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 /* 썸네일 태그: 누르면 그 조건으로 바로 필터 (선택된 태그는 진하게) */
 function tagBtn(key, v) { return '<button class="bd' + (S.f[key].indexOf(v) >= 0 ? " on" : "") + '" data-tagf="' + key + ":" + v + '" aria-label="' + v + ' 운동만 보기">' + esc(v) + "</button>"; }
@@ -107,8 +109,8 @@ function conds() {
   }).join("") + "</div>";
 }
 function apiNote() {
-  if (S.api === "loading") return '<p class="note">외부 데이터(Free Exercise DB) 불러오는 중… 동작 조건은 잠시 후 사용할 수 있어요.</p>';
-  if (S.api === "error") return '<p class="note">외부 데이터를 불러오지 못해 동작 조건(미는·당기는 등)은 쓸 수 없어요. <button class="link" data-api>다시 불러오기</button></p>';
+  if (S.api === "loading") return '<p class="note">근육 정보를 받아오고 있어요. 조금 뒤면 미는 운동, 당기는 운동 같은 조건도 쓸 수 있어요.</p>';
+  if (S.api === "error") return '<p class="note">근육 정보를 받아오지 못해서 지금은 미는 운동, 당기는 운동 같은 조건을 쓸 수 없어요. <button class="link" data-api>다시 받아오기</button></p>';
   return "";
 }
 function items(a) { return (a && a.length) ? a.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") : ""; }
@@ -117,24 +119,22 @@ function tag(m, k) { var t = (m.real || []).indexOf(k) >= 0 ? "real" : ((m.dummy
 /* ---------- 결과 목록 (9주차 renderList: 건수·카드·결과 없음을 한 번에) ---------- */
 function listHTML() {
   var r = sorted(), n = activeCount(), shown = r.slice(0, S.limit);
-  var bar = '<div class="bar"><span id="count">검색 결과 ' + r.length + "건" + (n ? " · 조건 " + n + "개" : "") + "</span>"
+  var bar = '<div class="bar"><span id="count">' + (!r.length ? "맞는 운동이 없어요" : n ? "조건 " + n + "개로 운동 " + r.length + "개를 찾았어요" : S.q ? "운동 " + r.length + "개를 찾았어요" : "전체 운동 " + r.length + "개") + "</span>"
     + '<span class="tools"><select data-sort aria-label="정렬">' + Object.keys(SORTERS).map(function (k) {
         return '<option value="' + k + '"' + (S.sort == k ? " selected" : "") + ">" + SORT_LABEL[k] + "</option>";
       }).join("") + '</select><button data-reset aria-label="전체 조건 초기화">↺</button></span></div>';
   if (!r.length) {
     var tokens = S.picked.slice(); if (S.q) tokens.unshift("q:");
     var rm = tokens.slice().reverse().filter(function (t) { return results(without(t)).length; })[0];
-    var tip = rm ? '<p class="suggest">‘' + tokenLabel(rm) + "’ 조건을 해제하면 " + results(without(rm)).length + '건을 볼 수 있어요.</p><button data-unset="' + rm + '">' + tokenLabel(rm) + " 해제</button>" : "<br>";
-    return bar + empty("검색 결과가 없어요", "조건을 바꾸거나 필터를 초기화해 보세요.", tip + "<button data-reset>필터 초기화</button>");
+    var tip = rm ? '<p class="suggest">' + tokenLabel(rm) + " 조건을 빼면 " + results(without(rm)).length + '개가 나와요.</p><button data-unset="' + rm + '">' + tokenLabel(rm) + " 빼기</button>" : "<br>";
+    return bar + empty("딱 맞는 운동이 없어요", "고른 조건을 조금만 줄여 볼까요?", tip + "<button data-reset>처음부터 다시</button>");
   }
   return bar + shown.map(function (x) { return card(x); }).join("")
-    + (r.length > shown.length ? '<button class="more" data-more>더 보기 (' + shown.length + "/" + r.length + ")</button>" : "");
+    + (r.length > shown.length ? '<button class="more" data-more>운동 더 보기</button>' : "");
 }
 function renderList(reset) {
-  if (reset) S.limit = PAGE;
-  var box = document.querySelector("#results");
-  if (S.scr === "explore" && box) box.innerHTML = listHTML();   // 검색창은 그대로 두고 목록만 다시 그림
-  else render();
+  if (reset) S.limit = PAGE;   // 조건이 바뀌면 처음 30개부터
+  render(!reset);              // 더 보기는 스크롤 유지, 입력 중인 검색창 커서는 render()가 지켜 줌
 }
 
 /* 홈 추천: 초급 운동을 초보자 추천순으로 정렬한 뒤 부위·기구가 골고루 섞이도록 번갈아 고름 */
@@ -160,47 +160,47 @@ function tile(x) {
 var VIEWS = {
   home: function () {
     var rec = homePicks(8);
-    return '<p class="intro">운동 방법과 주의사항을 쉽고 빠르게 찾아보는 운동 가이드 · 운동 ' + EX.length + "개</p>"
-      + '<input class="in" id="home-search" data-s placeholder="🔍 운동명·기구명 검색" aria-label="운동 검색">'
-      + '<h3>부위별 바로가기</h3><div class="row">' + PARTS.map(function (p) { return '<button class="chip" data-part="' + p + '">' + p + "</button>"; }).join("") + "</div>"
-      + '<h3>초보자 추천 운동<a data-go="explore">더보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
+    return '<p class="intro">헬스장이 처음이라도 괜찮아요. 운동 ' + EX.length + "개의 방법과 주의할 점을 차근차근 알려 드릴게요.</p>"
+      + '<input class="in" id="home-search" data-s placeholder="🔍 어떤 운동을 찾고 있나요?" aria-label="운동 검색">'
+      + '<h3>오늘은 어디를 운동할까요?</h3><div class="row">' + PARTS.map(function (p) { return '<button class="chip" data-part="' + p + '">' + p + "</button>"; }).join("") + "</div>"
+      + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
   /* 검색 보드(검색창 + 부위·난이도·기구·조건)를 목록 위에 한 덩어리로 */
   explore: function () {
     return '<section class="board"><div class="filters">' + grp("부위", "p", PARTS) + grp("난이도", "l", LV) + grp("기구", "e", EQ) + conds() + "</div>" + apiNote()
-      + '<input class="in" id="search-input" placeholder="🔍 운동명·기구·근육 검색" aria-label="운동 검색" value="' + esc(S.q) + '"></section>'
+      + '<input class="in" id="search-input" placeholder="🔍 운동 이름이나 기구, 근육으로 찾기" aria-label="운동 검색" value="' + esc(S.q) + '"></section>'
       + '<div id="results">' + listHTML() + "</div>";
   },
   detail: function () {
     var x = get(S.id);
-    if (!x) return empty("운동을 찾을 수 없어요", "목록에서 다시 선택해 주세요.", '<br><button data-go="explore">운동 탐색하기</button>');
+    if (!x) return empty("이 운동을 찾지 못했어요", "목록으로 돌아가서 다시 골라 주세요.", '<br><button data-go="explore">목록으로</button>');
     var on = S.fav.indexOf(x.id) >= 0, m = x.meta || {}, unk = (m.unknown || []).length;
     return '<button class="back" data-go="explore">← 목록으로</button><div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div><span class="bd src">JSON</span>' + (x.api ? '<span class="bd src">API</span>' : "") + bds(x) + "</div>"
-      + '<p class="meta">저장 JSON 사용 · ' + (x.api ? "외부 데이터 연동(Free Exercise DB)" : "외부 데이터 미연동") + " · 실제 " + (m.real || []).length + "개 · 더미 " + (m.dummy || []).length + "개" + (unk ? " · 정보 없음 " + unk + "개" : "") + " 필드</p>"
-      + '<p class="desc">' + (x.description ? esc(x.description) + tag(m, "description") : '<span class="none">설명 정보 없음</span>') + "</p>"
-      + (x.api ? '<h3><span>쓰는 근육<span class="tag real">API</span></span></h3><ul><li>주로: ' + esc(x.primary.join(", ")) + "</li>" + (x.secondary.length ? "<li>함께: " + esc(x.secondary.join(", ")) + "</li>" : "") + "<li>동작: " + esc([x.force, x.mechanic].filter(Boolean).join(" · ") || "정보 없음") + "</li></ul>" : "")
-      + "<h3><span>기구 설정" + tag(m, "setup") + "</span></h3>" + (x.setup && x.setup.length ? "<ul>" + items(x.setup) + "</ul>" : '<p class="none">정보 없음</p>')
-      + "<h3><span>운동 방법" + tag(m, "steps") + "</span></h3>" + (m.stepsLang == "en" ? '<p class="note">영문 원문입니다.</p>' : (m.stepsLang == "ko" ? '<p class="note">원문(영어)을 한국어로 옮긴 내용입니다.</p>' : "")) + "<ol>" + items(x.steps) + "</ol>"
-      + "<h3><span>주의사항" + tag(m, "tips") + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">정보 없음</p>')
-      + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "★ 관심 운동 저장됨" : "☆ 관심 운동 저장") + "</button>"
-      + '<p class="src-foot">출처: Free Exercise DB (퍼블릭 도메인). 더미 표시 항목은 실습용 AI 작성 내용입니다.</p>';
+      + '<p class="meta">저장해 둔 JSON 파일' + (x.api ? "과 Free Exercise DB에서" : "에서") + " 가져온 정보예요. 실제 정보 " + (m.real || []).length + "개" + ((m.dummy || []).length ? ", 실습용 예시 " + m.dummy.length + "개" : "") + (unk ? ", 아직 비어 있는 항목 " + unk + "개" : "") + "가 있어요.</p>"
+      + '<p class="desc">' + (x.description ? esc(x.description) + tag(m, "description") : '<span class="none">아직 설명이 없어요.</span>') + "</p>"
+      + (x.api ? '<h3><span>쓰는 근육<span class="tag real">API</span></span></h3><ul><li>주로 ' + esc(x.primary.join(", ")) + eul(x.primary[x.primary.length - 1]) + " 써요</li>" + (x.secondary.length ? "<li>" + esc(x.secondary.join(", ")) + "도 같이 써요</li>" : "") + ([x.force, x.mechanic].filter(Boolean).length ? "<li>" + esc([x.force, x.mechanic].filter(Boolean).join(", ")) + " 운동이에요</li>" : "") + "</ul>" : "")
+      + "<h3><span>기구 맞추기" + tag(m, "setup") + "</span></h3>" + (x.setup && x.setup.length ? "<ul>" + items(x.setup) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
+      + "<h3><span>운동 방법" + tag(m, "steps") + "</span></h3>" + (m.stepsLang == "en" ? '<p class="note">영어 원문 그대로예요.</p>' : (m.stepsLang == "ko" ? '<p class="note">영어 원문을 우리말로 옮겼어요.</p>' : "")) + "<ol>" + items(x.steps) + "</ol>"
+      + "<h3><span>이것만 조심하세요" + tag(m, "tips") + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
+      + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "★ 저장했어요" : "☆ 저장해 두기") + "</button>"
+      + '<p class="src-foot">운동 정보는 누구나 쓸 수 있게 공개된 Free Exercise DB에서 가져왔어요. 더미라고 붙은 글은 수업 실습용으로 AI가 쓴 내용이에요.</p>';
   },
   my: function () {
     var f = S.tab == "favs", ids = (f ? S.fav : S.rec).filter(function (i) { return get(i); });
     return '<div class="tabs"><button data-tab="favs" class="' + (f ? "on" : "") + '">관심 운동</button><button data-tab="recent" class="' + (f ? "" : "on") + '">최근 본 운동</button></div>'
-      + (ids.length ? ids.map(function (i) { return card(get(i), f); }).join("") : empty(f ? "저장한 운동이 없어요" : "최근 본 운동이 없어요", f ? "운동 상세에서 저장 버튼을 눌러 보세요." : "운동 상세를 보면 여기에 자동으로 쌓여요.", '<br><button data-go="explore">운동 탐색하기</button>'));
+      + (ids.length ? ids.map(function (i) { return card(get(i), f); }).join("") : empty(f ? "아직 저장한 운동이 없어요" : "아직 본 운동이 없어요", f ? "마음에 드는 운동을 저장해 두면 여기서 바로 꺼내 볼 수 있어요." : "운동을 열어 보면 여기에 하나씩 남아요.", '<br><button data-go="explore">운동 둘러보기</button>'));
   }
 };
 
-function render() {
-  if (S.load == "loading") { screenView.innerHTML = empty("운동 정보를 불러오는 중이에요", "잠시만 기다려 주세요."); return; }
-  if (S.load == "error") { screenView.innerHTML = empty("운동 정보를 불러오지 못했어요", "data/exercises.json을 찾지 못했거나, 파일을 직접 열어서 불러오지 못했을 수 있어요. 웹 주소(GitHub Pages)에서 열어 보세요.", "<br><button data-retry>다시 시도</button>"); return; }
+function render(keepScroll) {
+  if (S.load == "loading") { screenView.innerHTML = empty("운동 정보를 가져오고 있어요", "잠깐만 기다려 주세요."); return; }
+  if (S.load == "error") { screenView.innerHTML = empty("운동 정보를 가져오지 못했어요", "파일을 바로 열면 운동 정보를 읽을 수 없어요. GitHub Pages 주소로 들어와 주세요.", "<br><button data-retry>다시 불러오기</button>"); return; }
   var typing = document.activeElement && document.activeElement.id === "search-input";
   screenView.innerHTML = VIEWS[S.scr]();
   if (typing) { var si = document.querySelector("#search-input"); if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); } }   // 입력 중이면 커서 유지
   var navOn = S.scr == "detail" ? "explore" : S.scr;
   Array.prototype.forEach.call(bottomNav.children, function (b) { b.className = b.getAttribute("data-go") == navOn ? "on" : ""; });
-  screenView.scrollTop = 0;
+  if (!keepScroll) screenView.scrollTop = 0;
 }
 
 /* ---------- 데이터 불러오기 ---------- */
@@ -240,7 +240,7 @@ function go(s, id) {
 function only(key, v) { S.f = { p: [], l: [], e: [] }; S.f[key] = [v]; S.filters = []; S.q = ""; S.picked = [key + ":" + v]; go("explore"); }
 function toggle(arr, v) { var k = arr.indexOf(v); if (k >= 0) arr.splice(k, 1); else arr.push(v); return k < 0; }
 function pick(tok, added) { S.picked = S.picked.filter(function (t) { return t !== tok; }); if (added) S.picked.push(tok); }
-function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S.picked = []; S.sort = "name"; S.limit = PAGE; render(); }
+function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S.picked = []; S.sort = "name"; renderList(true); }
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
@@ -261,13 +261,13 @@ document.addEventListener("click", function (e) {
     e.stopPropagation();
     var a = d.tagf.split(":");
     if (S.scr !== "explore") { only(a[0], a[1]); return; }
-    pick(d.tagf, toggle(S.f[a[0]], a[1])); render(); return;
+    pick(d.tagf, toggle(S.f[a[0]], a[1])); renderList(true); return;
   }
-  if (d.f) { var b = d.f.split(":"); pick(d.f, toggle(S.f[b[0]], b[1])); S.limit = PAGE; render(); return; }
-  if (d.filter) { pick("c:" + d.filter, toggle(S.filters, d.filter)); S.limit = PAGE; render(); return; }
+  if (d.f) { var b = d.f.split(":"); pick(d.f, toggle(S.f[b[0]], b[1])); renderList(true); return; }
+  if (d.filter) { pick("c:" + d.filter, toggle(S.filters, d.filter)); renderList(true); return; }
   if (d.unset) {
     var st = without(d.unset); S.q = st.q; S.f = st.f; S.filters = st.filters;
-    S.picked = S.picked.filter(function (x) { return x !== d.unset; }); S.limit = PAGE; render(); return;
+    S.picked = S.picked.filter(function (x) { return x !== d.unset; }); renderList(true); return;
   }
   if (d.tab) { S.tab = d.tab; render(); return; }
   if (d.reset !== undefined) { resetAll(); return; }
