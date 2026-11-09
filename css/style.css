@@ -97,3 +97,9 @@ button.bd.on{background:var(--ac);color:var(--acfg)}
 .board .note{margin:8px 0 0}
 .link{background:none;padding:0;font-size:12px;text-decoration:underline;color:var(--fg)}
 .eng+div .bd{background:var(--fill)}
+/* 홈 초보자 추천 — 2열 타일 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{padding:8px 8px 10px;border-radius:14px;background:var(--fill);cursor:pointer;min-width:0}
+.tile:active{opacity:.7}
+.tile .img{width:100%;height:auto;aspect-ratio:4/3;font-size:36px}
+.tile b{display:block;margin-top:8px;font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

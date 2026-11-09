@@ -137,13 +137,33 @@ function renderList(reset) {
   else render();
 }
 
+/* 홈 추천: 초급 운동을 초보자 추천순으로 정렬한 뒤 부위·기구가 골고루 섞이도록 번갈아 고름 */
+function homePicks(n) {
+  var pool = EX.filter(function (x) { return x.difficulty == "초급"; }).sort(SORTERS.beginner), out = [], round = 0;
+  while (out.length < n && round < 10) {
+    PARTS.forEach(function (p) {
+      if (out.length >= n) return;
+      var used = function (eq) { return out.filter(function (o) { return o.equipment === eq; }).length; };
+      var cand = pool.filter(function (y) { return y.category === p && out.indexOf(y) < 0; });
+      var x = cand.slice().sort(function (a, b) { return used(a.equipment) - used(b.equipment); })[0];   // 기구도 골고루
+      if (x) out.push(x);
+    });
+    round++;
+  }
+  return out;
+}
+/* 홈 전용 2열 타일 카드 */
+function tile(x) {
+  return '<div class="tile" data-go="detail" data-id="' + x.id + '"><div class="img"><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지" loading="lazy"></div>'
+    + "<b>" + esc(x.name) + "</b><div>" + bds(x) + "</div></div>";
+}
 var VIEWS = {
   home: function () {
-    var rec = EX.filter(function (x) { return x.difficulty == "초급"; }).slice(0, 3);
+    var rec = homePicks(8);
     return '<p class="intro">운동 방법과 주의사항을 쉽고 빠르게 찾아보는 운동 가이드 · 운동 ' + EX.length + "개</p>"
       + '<input class="in" id="home-search" data-s placeholder="🔍 운동명·기구명 검색" aria-label="운동 검색">'
       + '<h3>부위별 바로가기</h3><div class="row">' + PARTS.map(function (p) { return '<button class="chip" data-part="' + p + '">' + p + "</button>"; }).join("") + "</div>"
-      + '<h3>초보자 추천 운동<a data-go="explore">더보기</a></h3>' + rec.map(function (x) { return card(x); }).join("");
+      + '<h3>초보자 추천 운동<a data-go="explore">더보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
   /* 검색 보드(검색창 + 부위·난이도·기구·조건)를 목록 위에 한 덩어리로 */
   explore: function () {
