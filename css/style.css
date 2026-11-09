@@ -103,3 +103,58 @@ button.bd.on{background:var(--ac);color:var(--acfg)}
 .tile:active{opacity:.7}
 .tile .img{width:100%;height:auto;aspect-ratio:4/3;font-size:36px}
 .tile b{display:block;margin-top:8px;font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ===== 홈: 서비스 소개 + 인기 순위 ===== */
+.hello{margin:2px 0 4px;padding:16px;border-radius:16px;background:var(--fill)}
+.hello b{display:block;font-size:19px;line-height:1.35}
+.hello p{margin:6px 0 12px;color:var(--mut);font-size:14px}
+.hello .in{background:var(--bg);margin:0}
+.rank{list-style:none;padding:0;margin:0}
+.rank li{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.rank li:last-child{border-bottom:0}
+.rank em{font-style:normal;font-weight:700;width:16px;text-align:center}
+.rk-name{flex:none;width:42%;min-width:0;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-name small{display:block;font-weight:400;font-size:11px;color:var(--mut)}
+.rk-bar{flex:1;height:8px;border-radius:4px;background:var(--fill2);overflow:hidden}
+.rk-bar i{display:block;height:100%;border-radius:4px;background:var(--ac)}
+.rk-num{font-size:12px;color:var(--mut);width:40px;text-align:right}
+/* ===== 탐색: 접고 펼치기 ===== */
+.fold{width:100%;margin:2px 0 8px;padding:8px;background:var(--bg);font-size:13px;color:var(--fg)}
+.fold em{font-style:normal;font-size:11px;margin-left:4px;padding:1px 7px;border-radius:8px;background:var(--ac);color:var(--acfg)}
+/* ===== 상세: 별점·후기 ===== */
+.rate{margin:8px 0 0;font-size:14px}
+.rate b{color:var(--fg)}
+.rv-sum{display:flex;gap:14px;align-items:center;padding:12px;border-radius:14px;background:var(--fill);margin-bottom:10px}
+.rv-avg{display:flex;flex-direction:column;align-items:center;min-width:74px}
+.rv-avg b{font-size:28px;line-height:1}
+.rv-avg span{font-size:13px;margin-top:4px}
+.rv-avg small,.rv-parts small{font-size:11px;color:var(--mut)}
+.rv-parts{flex:1;min-width:0}
+.rv-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:6px}
+.rv-row span:first-child{width:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rv-row em{font-style:normal;color:var(--mut);width:28px;text-align:right}
+.rv-form{padding:12px;border-radius:14px;border:1px solid var(--line);margin-bottom:10px}
+.rv-form small{display:block;margin:10px 0 6px;font-size:12px;color:var(--mut)}
+.stars{display:flex;gap:2px;margin-top:6px}
+.stars button{background:none;font-size:26px;padding:0 3px;line-height:1;color:var(--mut)}
+.stars button.on{color:var(--fg)}
+.rv-form .chip{padding:5px 11px;font-size:13px}
+#review-text{width:100%;margin-top:10px;font:inherit;font-size:16px;color:var(--fg);background:var(--fill);border:0;border-radius:10px;padding:10px;resize:none}
+.rv-send{width:100%;margin-top:8px;padding:11px;background:var(--ac);color:var(--acfg);font-weight:600}
+.rv-form .note{margin:6px 0 0}
+.err{margin:6px 0 0;font-size:13px;color:#d70015}
+.rv-list{list-style:none;padding:0;margin:0}
+.rv-list li{padding:10px 0;border-bottom:1px solid var(--line)}
+.rv-list p{margin:4px 0 0;font-size:14px}
+.rv-list .bd{background:var(--fill)}
+/* ===== 전체 메뉴 ===== */
+.about{margin:12px 0 0;font-size:13px;color:var(--mut);line-height:1.6}
+/* ===== 전체 메뉴: 사용법 · 내 기록 · 출처 ===== */
+.how{padding-left:20px;margin:0}
+.how li{margin-bottom:10px;font-size:13px;color:var(--mut);line-height:1.5}
+.how li b{display:block;font-size:15px;color:var(--fg)}
+.mine{display:flex;gap:6px}
+.mine span{flex:1;padding:10px 4px;border-radius:12px;background:var(--fill);text-align:center;font-size:11px;color:var(--mut)}
+.mine b{display:block;font-size:20px;color:var(--fg)}
+.wipe{width:100%;margin-top:10px;padding:11px;font-size:14px;background:var(--fill);color:var(--fg)}
+.wipe.on{background:#d70015;color:#fff}
+.panel .src-note{margin:0}

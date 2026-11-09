@@ -38,9 +38,30 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1787,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "가슴",
+          "삼두근"
+        ],
+        "text": "무릎 대고 시작했는데 2주 지나니까 무릎 떼고 5개 돼요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "가슴",
+          "어깨"
+        ],
+        "text": "집에서 바로 할 수 있어서 제일 자주 해요."
+      }
+    ]
   },
   {
     "id": 2,
@@ -81,9 +102,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1431,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "가슴"
+        ],
+        "text": "바벨보다 덜 무서워서 처음 하기 좋았어요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "가슴",
+          "삼두근"
+        ],
+        "text": "내릴 때 천천히 하라는 말 지키니까 가슴이 확실히 당겨요."
+      }
+    ]
   },
   {
     "id": 3,
@@ -124,9 +165,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1904,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "가슴"
+        ],
+        "text": "자리만 맞추면 자세가 알아서 잡혀서 편해요."
+      },
+      {
+        "rating": 5,
+        "parts": [
+          "가슴",
+          "어깨"
+        ],
+        "text": "헬스장 첫날 이거부터 했어요. 부담 없어요."
+      }
+    ]
   },
   {
     "id": 4,
@@ -167,9 +228,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1952,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "가슴",
+          "삼두근"
+        ],
+        "text": "빈 봉으로 자세부터 연습 중이에요. 꼭 옆에 사람 있을 때 해요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "가슴"
+        ],
+        "text": "무게 욕심내다 어깨 아팠던 적 있어서 지금은 가볍게 해요."
+      }
+    ]
   },
   {
     "id": 5,
@@ -210,9 +291,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1488,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "광배근"
+        ],
+        "text": "등에 처음으로 힘 들어가는 느낌을 받았어요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "광배근",
+          "이두근"
+        ],
+        "text": "팔로 당기지 말라는 게 무슨 말인지 3번째 날 알았어요."
+      }
+    ]
   },
   {
     "id": 6,
@@ -253,9 +354,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 2023,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "등 중앙"
+        ],
+        "text": "가슴 펴고 당기니까 자세가 좋아지는 느낌이에요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "등 중앙",
+          "광배근"
+        ],
+        "text": "몸이 앞뒤로 흔들리지 않게 하는 게 생각보다 어려워요."
+      }
+    ]
   },
   {
     "id": 7,
@@ -296,9 +417,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1862,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "등 중앙",
+          "광배근"
+        ],
+        "text": "허리 각도 잡기가 어려워서 거울 보면서 해요."
+      },
+      {
+        "rating": 3,
+        "parts": [
+          "등 중앙"
+        ],
+        "text": "초보한테는 조금 어려웠어요. 덤벨 로우부터 하는 걸 추천해요."
+      }
+    ]
   },
   {
     "id": 8,
@@ -339,9 +480,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1372,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "광배근"
+        ],
+        "text": "한 쪽씩 하니까 어디에 힘이 들어가는지 잘 느껴져요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "광배근",
+          "등 중앙"
+        ],
+        "text": "벤치에 손 짚고 하니까 허리가 편해요."
+      }
+    ]
   },
   {
     "id": 9,
@@ -381,9 +542,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1966,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "대퇴사두근",
+          "둔근"
+        ],
+        "text": "매일 아침 20개씩 하고 있어요. 계단 오를 때 덜 힘들어요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "둔근"
+        ],
+        "text": "엉덩이 뒤로 빼는 느낌을 잡으니까 무릎이 안 아파요."
+      }
+    ]
   },
   {
     "id": 10,
@@ -424,9 +605,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1394,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "대퇴사두근",
+          "둔근"
+        ],
+        "text": "랙에 안전바 꼭 걸고 해요. 하고 나면 다리가 후들거려요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "대퇴사두근"
+        ],
+        "text": "맨몸 스쿼트로 자세 익히고 넘어오니 할 만했어요."
+      }
+    ]
   },
   {
     "id": 11,
@@ -468,9 +669,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1607,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "대퇴사두근"
+        ],
+        "text": "허리 부담 없이 다리 운동할 수 있어서 좋아요."
+      },
+      {
+        "rating": 5,
+        "parts": [
+          "대퇴사두근",
+          "둔근"
+        ],
+        "text": "발 위치 바꾸면 느낌이 달라져서 재밌어요."
+      }
+    ]
   },
   {
     "id": 12,
@@ -511,9 +732,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1722,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "둔근",
+          "대퇴사두근"
+        ],
+        "text": "다음 날 엉덩이가 제일 아팠어요. 효과 확실해요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "둔근"
+        ],
+        "text": "균형 잡기가 어려워서 처음엔 덤벨 없이 했어요."
+      }
+    ]
   },
   {
     "id": 13,
@@ -554,9 +795,28 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1558,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "어깨"
+        ],
+        "text": "아주 가벼운 덤벨로도 어깨가 타는 느낌이에요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "어깨"
+        ],
+        "text": "반동 안 쓰려고 하니까 무게를 많이 낮춰야 했어요."
+      }
+    ]
   },
   {
     "id": 14,
@@ -597,9 +857,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1172,
+    "sampleReviews": [
+      {
+        "rating": 5,
+        "parts": [
+          "어깨",
+          "삼두근"
+        ],
+        "text": "앉아서 하니까 허리가 덜 흔들려서 좋아요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "어깨"
+        ],
+        "text": "덤벨끼리 부딪히지 않게 하는 게 은근 신경 쓰여요."
+      }
+    ]
   },
   {
     "id": 15,
@@ -639,9 +919,29 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1107,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "어깨",
+          "삼두근"
+        ],
+        "text": "서서 하니까 배에도 힘이 들어가요."
+      },
+      {
+        "rating": 3,
+        "parts": [
+          "어깨"
+        ],
+        "text": "아직은 무거워서 덤벨 숄더프레스를 더 자주 해요."
+      }
+    ]
   },
   {
     "id": 16,
@@ -682,9 +982,28 @@
       "dummy": [
         "description",
         "setup",
-        "tips"
+        "tips",
+        "popularity",
+        "sampleReviews"
       ]
-    }
+    },
+    "popularity": 1772,
+    "sampleReviews": [
+      {
+        "rating": 4,
+        "parts": [
+          "어깨"
+        ],
+        "text": "어깨 앞쪽이 확실히 뻐근해져요."
+      },
+      {
+        "rating": 4,
+        "parts": [
+          "어깨"
+        ],
+        "text": "한 팔씩 번갈아 하니까 반동이 덜 생겨요."
+      }
+    ]
   },
   {
     "id": 17,
@@ -714,14 +1033,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 648
   },
   {
     "id": 18,
@@ -753,14 +1075,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 359
   },
   {
     "id": 19,
@@ -792,14 +1117,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 851
   },
   {
     "id": 20,
@@ -832,14 +1160,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 412
   },
   {
     "id": 21,
@@ -870,14 +1201,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 866
   },
   {
     "id": 22,
@@ -909,14 +1243,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1096
   },
   {
     "id": 23,
@@ -948,14 +1285,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 995
   },
   {
     "id": 24,
@@ -988,14 +1328,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 771
   },
   {
     "id": 25,
@@ -1028,14 +1371,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 997
   },
   {
     "id": 26,
@@ -1068,14 +1414,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1106
   },
   {
     "id": 27,
@@ -1107,14 +1456,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 464
   },
   {
     "id": 28,
@@ -1146,14 +1498,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1094
   },
   {
     "id": 29,
@@ -1184,14 +1539,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 619
   },
   {
     "id": 30,
@@ -1225,14 +1583,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 913
   },
   {
     "id": 31,
@@ -1264,14 +1625,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 518
   },
   {
     "id": 32,
@@ -1305,14 +1669,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 675
   },
   {
     "id": 33,
@@ -1342,14 +1709,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1087
   },
   {
     "id": 34,
@@ -1382,14 +1752,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 418
   },
   {
     "id": 35,
@@ -1423,14 +1796,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 945
   },
   {
     "id": 36,
@@ -1463,14 +1839,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 642
   },
   {
     "id": 37,
@@ -1503,14 +1882,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 773
   },
   {
     "id": 38,
@@ -1544,14 +1926,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 914
   },
   {
     "id": 39,
@@ -1581,14 +1966,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 653
   },
   {
     "id": 40,
@@ -1620,14 +2008,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1100
   },
   {
     "id": 41,
@@ -1659,14 +2050,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 653
   },
   {
     "id": 42,
@@ -1698,14 +2092,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 585
   },
   {
     "id": 43,
@@ -1736,14 +2133,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 704
   },
   {
     "id": 44,
@@ -1774,14 +2174,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 527
   },
   {
     "id": 45,
@@ -1811,14 +2214,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1138
   },
   {
     "id": 46,
@@ -1848,14 +2254,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1115
   },
   {
     "id": 47,
@@ -1886,14 +2295,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 896
   },
   {
     "id": 48,
@@ -1925,14 +2337,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 526
   },
   {
     "id": 49,
@@ -1966,14 +2381,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 699
   },
   {
     "id": 50,
@@ -2005,14 +2423,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 835
   },
   {
     "id": 51,
@@ -2043,14 +2464,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 533
   },
   {
     "id": 52,
@@ -2082,14 +2506,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1050
   },
   {
     "id": 53,
@@ -2121,14 +2548,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 632
   },
   {
     "id": 54,
@@ -2159,14 +2589,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 472
   },
   {
     "id": 55,
@@ -2198,14 +2631,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1070
   },
   {
     "id": 56,
@@ -2237,14 +2673,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1065
   },
   {
     "id": 57,
@@ -2276,14 +2715,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 841
   },
   {
     "id": 58,
@@ -2314,14 +2756,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1169
   },
   {
     "id": 59,
@@ -2354,14 +2799,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 579
   },
   {
     "id": 60,
@@ -2392,14 +2840,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 738
   },
   {
     "id": 61,
@@ -2430,14 +2881,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 292
   },
   {
     "id": 62,
@@ -2470,14 +2924,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 350
   },
   {
     "id": 63,
@@ -2509,14 +2966,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 223
   },
   {
     "id": 64,
@@ -2547,14 +3007,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 785
   },
   {
     "id": 65,
@@ -2585,14 +3048,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 819
   },
   {
     "id": 66,
@@ -2625,14 +3091,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 560
   },
   {
     "id": 67,
@@ -2665,14 +3134,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 406
   },
   {
     "id": 68,
@@ -2703,14 +3175,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 942
   },
   {
     "id": 69,
@@ -2741,14 +3216,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 626
   },
   {
     "id": 70,
@@ -2780,14 +3258,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 243
   },
   {
     "id": 71,
@@ -2819,14 +3300,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 515
   },
   {
     "id": 72,
@@ -2858,14 +3342,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 842
   },
   {
     "id": 73,
@@ -2896,14 +3383,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 807
   },
   {
     "id": 74,
@@ -2935,14 +3425,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 766
   },
   {
     "id": 75,
@@ -2975,14 +3468,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 908
   },
   {
     "id": 76,
@@ -3013,14 +3509,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1088
   },
   {
     "id": 77,
@@ -3051,14 +3550,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1051
   },
   {
     "id": 78,
@@ -3092,14 +3594,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 875
   },
   {
     "id": 79,
@@ -3128,14 +3633,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 537
   },
   {
     "id": 80,
@@ -3167,14 +3675,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 388
   },
   {
     "id": 81,
@@ -3208,14 +3719,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 719
   },
   {
     "id": 82,
@@ -3245,14 +3759,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 701
   },
   {
     "id": 83,
@@ -3283,14 +3800,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 920
   },
   {
     "id": 84,
@@ -3321,14 +3841,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 820
   },
   {
     "id": 85,
@@ -3358,14 +3881,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 581
   },
   {
     "id": 86,
@@ -3397,14 +3923,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 791
   },
   {
     "id": 87,
@@ -3435,14 +3964,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 632
   },
   {
     "id": 88,
@@ -3475,14 +4007,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 436
   },
   {
     "id": 89,
@@ -3513,14 +4048,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 815
   },
   {
     "id": 90,
@@ -3551,14 +4089,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 710
   },
   {
     "id": 91,
@@ -3590,14 +4131,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 616
   },
   {
     "id": 92,
@@ -3629,14 +4173,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 738
   },
   {
     "id": 93,
@@ -3668,14 +4215,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 196
   },
   {
     "id": 94,
@@ -3708,14 +4258,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 781
   },
   {
     "id": 95,
@@ -3746,14 +4299,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 585
   },
   {
     "id": 96,
@@ -3785,14 +4341,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 511
   },
   {
     "id": 97,
@@ -3825,14 +4384,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 816
   },
   {
     "id": 98,
@@ -3864,14 +4426,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 943
   },
   {
     "id": 99,
@@ -3902,14 +4467,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 846
   },
   {
     "id": 100,
@@ -3942,14 +4510,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 682
   },
   {
     "id": 101,
@@ -3979,14 +4550,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 729
   },
   {
     "id": 102,
@@ -4018,14 +4592,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 895
   },
   {
     "id": 103,
@@ -4058,14 +4635,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1170
   },
   {
     "id": 104,
@@ -4096,14 +4676,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 796
   },
   {
     "id": 105,
@@ -4136,14 +4719,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 843
   },
   {
     "id": 106,
@@ -4175,14 +4761,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 584
   },
   {
     "id": 107,
@@ -4215,14 +4804,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 370
   },
   {
     "id": 108,
@@ -4254,14 +4846,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 331
   },
   {
     "id": 109,
@@ -4294,14 +4889,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 685
   },
   {
     "id": 110,
@@ -4332,14 +4930,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 379
   },
   {
     "id": 111,
@@ -4371,14 +4972,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 725
   },
   {
     "id": 112,
@@ -4411,14 +5015,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 862
   },
   {
     "id": 113,
@@ -4449,14 +5056,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 702
   },
   {
     "id": 114,
@@ -4487,14 +5097,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 280
   },
   {
     "id": 115,
@@ -4525,14 +5138,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1039
   },
   {
     "id": 116,
@@ -4562,14 +5178,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 745
   },
   {
     "id": 117,
@@ -4600,14 +5219,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 620
   },
   {
     "id": 118,
@@ -4641,14 +5263,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 515
   },
   {
     "id": 119,
@@ -4679,14 +5304,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 573
   },
   {
     "id": 120,
@@ -4718,14 +5346,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 667
   },
   {
     "id": 121,
@@ -4758,14 +5389,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 929
   },
   {
     "id": 122,
@@ -4797,14 +5431,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 738
   },
   {
     "id": 123,
@@ -4835,14 +5472,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 309
   },
   {
     "id": 124,
@@ -4875,14 +5515,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 492
   },
   {
     "id": 125,
@@ -4914,14 +5557,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1025
   },
   {
     "id": 126,
@@ -4953,14 +5599,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 510
   },
   {
     "id": 127,
@@ -4991,14 +5640,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 744
   },
   {
     "id": 128,
@@ -5029,14 +5681,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 522
   },
   {
     "id": 129,
@@ -5068,14 +5723,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1029
   },
   {
     "id": 130,
@@ -5108,14 +5766,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 707
   },
   {
     "id": 131,
@@ -5146,14 +5807,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 632
   },
   {
     "id": 132,
@@ -5187,14 +5851,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 823
   },
   {
     "id": 133,
@@ -5225,14 +5892,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 630
   },
   {
     "id": 134,
@@ -5264,14 +5934,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1129
   },
   {
     "id": 135,
@@ -5300,14 +5973,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 519
   },
   {
     "id": 136,
@@ -5338,14 +6014,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 299
   },
   {
     "id": 137,
@@ -5376,14 +6055,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1019
   },
   {
     "id": 138,
@@ -5416,14 +6098,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 541
   },
   {
     "id": 139,
@@ -5457,14 +6142,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 816
   },
   {
     "id": 140,
@@ -5496,14 +6184,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 312
   },
   {
     "id": 141,
@@ -5534,14 +6225,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 843
   },
   {
     "id": 142,
@@ -5574,14 +6268,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 286
   },
   {
     "id": 143,
@@ -5613,14 +6310,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 613
   },
   {
     "id": 144,
@@ -5649,14 +6349,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 680
   },
   {
     "id": 145,
@@ -5691,14 +6394,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 865
   },
   {
     "id": 146,
@@ -5731,14 +6437,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 522
   },
   {
     "id": 147,
@@ -5769,14 +6478,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 799
   },
   {
     "id": 148,
@@ -5809,14 +6521,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 604
   },
   {
     "id": 149,
@@ -5848,14 +6563,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1074
   },
   {
     "id": 150,
@@ -5889,14 +6607,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 994
   },
   {
     "id": 151,
@@ -5927,14 +6648,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 559
   },
   {
     "id": 152,
@@ -5967,14 +6691,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 997
   },
   {
     "id": 153,
@@ -6004,14 +6731,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1092
   },
   {
     "id": 154,
@@ -6043,14 +6773,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 539
   },
   {
     "id": 155,
@@ -6081,14 +6814,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 548
   },
   {
     "id": 156,
@@ -6120,14 +6856,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 837
   },
   {
     "id": 157,
@@ -6158,14 +6897,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 411
   },
   {
     "id": 158,
@@ -6197,14 +6939,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 279
   },
   {
     "id": 159,
@@ -6235,14 +6980,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 783
   },
   {
     "id": 160,
@@ -6274,14 +7022,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 762
   },
   {
     "id": 161,
@@ -6313,14 +7064,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 926
   },
   {
     "id": 162,
@@ -6352,14 +7106,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1148
   },
   {
     "id": 163,
@@ -6392,14 +7149,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1012
   },
   {
     "id": 164,
@@ -6431,14 +7191,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 888
   },
   {
     "id": 165,
@@ -6469,14 +7232,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1082
   },
   {
     "id": 166,
@@ -6509,14 +7275,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 852
   },
   {
     "id": 167,
@@ -6550,14 +7319,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1003
   },
   {
     "id": 168,
@@ -6588,14 +7360,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 777
   },
   {
     "id": 169,
@@ -6626,14 +7401,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1070
   },
   {
     "id": 170,
@@ -6667,14 +7445,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 624
   },
   {
     "id": 171,
@@ -6706,14 +7487,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 352
   },
   {
     "id": 172,
@@ -6745,14 +7529,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 968
   },
   {
     "id": 173,
@@ -6784,14 +7571,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 850
   },
   {
     "id": 174,
@@ -6824,14 +7614,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 804
   },
   {
     "id": 175,
@@ -6863,14 +7656,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 291
   },
   {
     "id": 176,
@@ -6901,14 +7697,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 733
   },
   {
     "id": 177,
@@ -6938,14 +7737,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 492
   },
   {
     "id": 178,
@@ -6973,14 +7775,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 271
   },
   {
     "id": 179,
@@ -7012,14 +7817,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 495
   },
   {
     "id": 180,
@@ -7049,14 +7857,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 801
   },
   {
     "id": 181,
@@ -7088,14 +7899,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 752
   },
   {
     "id": 182,
@@ -7127,14 +7941,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 912
   },
   {
     "id": 183,
@@ -7165,14 +7982,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 688
   },
   {
     "id": 184,
@@ -7204,14 +8024,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 371
   },
   {
     "id": 185,
@@ -7242,14 +8065,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 609
   },
   {
     "id": 186,
@@ -7282,14 +8108,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 852
   },
   {
     "id": 187,
@@ -7321,14 +8150,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 267
   },
   {
     "id": 188,
@@ -7359,14 +8191,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 495
   },
   {
     "id": 189,
@@ -7399,14 +8234,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 480
   },
   {
     "id": 190,
@@ -7438,14 +8276,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 653
   },
   {
     "id": 191,
@@ -7477,14 +8318,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1028
   },
   {
     "id": 192,
@@ -7515,14 +8359,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 529
   },
   {
     "id": 193,
@@ -7555,14 +8402,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 513
   },
   {
     "id": 194,
@@ -7595,14 +8445,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 788
   },
   {
     "id": 195,
@@ -7632,14 +8485,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1107
   },
   {
     "id": 196,
@@ -7671,14 +8527,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 293
   },
   {
     "id": 197,
@@ -7711,14 +8570,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 494
   },
   {
     "id": 198,
@@ -7752,14 +8614,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1069
   },
   {
     "id": 199,
@@ -7790,14 +8655,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 502
   },
   {
     "id": 200,
@@ -7828,14 +8696,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1048
   },
   {
     "id": 201,
@@ -7868,14 +8739,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 762
   },
   {
     "id": 202,
@@ -7907,14 +8781,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1057
   },
   {
     "id": 203,
@@ -7946,14 +8823,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 503
   },
   {
     "id": 204,
@@ -7984,14 +8864,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 533
   },
   {
     "id": 205,
@@ -8022,14 +8905,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 772
   },
   {
     "id": 206,
@@ -8061,14 +8947,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 719
   },
   {
     "id": 207,
@@ -8099,14 +8988,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 340
   },
   {
     "id": 208,
@@ -8139,14 +9031,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 676
   },
   {
     "id": 209,
@@ -8178,14 +9073,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 668
   },
   {
     "id": 210,
@@ -8217,14 +9115,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 534
   },
   {
     "id": 211,
@@ -8257,14 +9158,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 946
   },
   {
     "id": 212,
@@ -8298,14 +9202,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1167
   },
   {
     "id": 213,
@@ -8337,14 +9244,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 717
   },
   {
     "id": 214,
@@ -8377,14 +9287,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 593
   },
   {
     "id": 215,
@@ -8416,14 +9329,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 494
   },
   {
     "id": 216,
@@ -8455,14 +9371,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 929
   },
   {
     "id": 217,
@@ -8494,14 +9413,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 649
   },
   {
     "id": 218,
@@ -8532,14 +9454,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 262
   },
   {
     "id": 219,
@@ -8571,14 +9496,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 449
   },
   {
     "id": 220,
@@ -8610,14 +9538,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 819
   },
   {
     "id": 221,
@@ -8648,14 +9579,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 752
   },
   {
     "id": 222,
@@ -8689,14 +9623,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 413
   },
   {
     "id": 223,
@@ -8728,14 +9665,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 743
   },
   {
     "id": 224,
@@ -8767,14 +9707,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 912
   },
   {
     "id": 225,
@@ -8806,14 +9749,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 613
   },
   {
     "id": 226,
@@ -8844,14 +9790,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 910
   },
   {
     "id": 227,
@@ -8882,14 +9831,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 245
   },
   {
     "id": 228,
@@ -8921,14 +9873,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 462
   },
   {
     "id": 229,
@@ -8959,14 +9914,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 955
   },
   {
     "id": 230,
@@ -8999,14 +9957,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 810
   },
   {
     "id": 231,
@@ -9039,14 +10000,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 264
   },
   {
     "id": 232,
@@ -9079,14 +10043,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 565
   },
   {
     "id": 233,
@@ -9119,14 +10086,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 634
   },
   {
     "id": 234,
@@ -9157,14 +10127,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 513
   },
   {
     "id": 235,
@@ -9195,14 +10168,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 352
   },
   {
     "id": 236,
@@ -9235,14 +10211,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 176
   },
   {
     "id": 237,
@@ -9274,14 +10253,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 715
   },
   {
     "id": 238,
@@ -9313,14 +10295,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 934
   },
   {
     "id": 239,
@@ -9354,14 +10339,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 549
   },
   {
     "id": 240,
@@ -9394,14 +10382,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1131
   },
   {
     "id": 241,
@@ -9434,14 +10425,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 343
   },
   {
     "id": 242,
@@ -9472,14 +10466,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 997
   },
   {
     "id": 243,
@@ -9511,14 +10508,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1033
   },
   {
     "id": 244,
@@ -9549,14 +10549,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 575
   },
   {
     "id": 245,
@@ -9590,14 +10593,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 363
   },
   {
     "id": 246,
@@ -9630,14 +10636,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 691
   },
   {
     "id": 247,
@@ -9668,14 +10677,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 485
   },
   {
     "id": 248,
@@ -9707,14 +10719,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 608
   },
   {
     "id": 249,
@@ -9746,14 +10761,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1142
   },
   {
     "id": 250,
@@ -9784,14 +10802,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 664
   },
   {
     "id": 251,
@@ -9823,14 +10844,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 636
   },
   {
     "id": 252,
@@ -9861,14 +10885,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 265
   },
   {
     "id": 253,
@@ -9901,14 +10928,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 749
   },
   {
     "id": 254,
@@ -9940,14 +10970,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 843
   },
   {
     "id": 255,
@@ -9978,14 +11011,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 265
   },
   {
     "id": 256,
@@ -10015,14 +11051,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 298
   },
   {
     "id": 257,
@@ -10053,14 +11092,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 782
   },
   {
     "id": 258,
@@ -10092,14 +11134,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1088
   },
   {
     "id": 259,
@@ -10136,14 +11181,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 912
   },
   {
     "id": 260,
@@ -10173,14 +11221,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 745
   },
   {
     "id": 261,
@@ -10212,14 +11263,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1089
   },
   {
     "id": 262,
@@ -10252,14 +11306,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 960
   },
   {
     "id": 263,
@@ -10291,14 +11348,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 887
   },
   {
     "id": 264,
@@ -10331,14 +11391,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1113
   },
   {
     "id": 265,
@@ -10372,14 +11435,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 566
   },
   {
     "id": 266,
@@ -10411,14 +11477,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 953
   },
   {
     "id": 267,
@@ -10448,14 +11517,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 522
   },
   {
     "id": 268,
@@ -10487,14 +11559,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 883
   },
   {
     "id": 269,
@@ -10526,14 +11601,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 715
   },
   {
     "id": 270,
@@ -10567,14 +11645,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 515
   },
   {
     "id": 271,
@@ -10607,14 +11688,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 802
   },
   {
     "id": 272,
@@ -10648,14 +11732,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 880
   },
   {
     "id": 273,
@@ -10688,14 +11775,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 738
   },
   {
     "id": 274,
@@ -10728,14 +11818,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 778
   },
   {
     "id": 275,
@@ -10767,14 +11860,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1004
   },
   {
     "id": 276,
@@ -10805,14 +11901,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 893
   },
   {
     "id": 277,
@@ -10842,14 +11941,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 762
   },
   {
     "id": 278,
@@ -10881,14 +11983,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 971
   },
   {
     "id": 279,
@@ -10919,14 +12024,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 867
   },
   {
     "id": 280,
@@ -10960,14 +12068,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 248
   },
   {
     "id": 281,
@@ -10999,14 +12110,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 569
   },
   {
     "id": 282,
@@ -11037,14 +12151,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 548
   },
   {
     "id": 283,
@@ -11075,14 +12192,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 1057
   },
   {
     "id": 284,
@@ -11118,14 +12238,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 918
   },
   {
     "id": 285,
@@ -11157,14 +12280,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 537
   },
   {
     "id": 286,
@@ -11195,14 +12321,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 605
   },
   {
     "id": 287,
@@ -11237,14 +12366,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 924
   },
   {
     "id": 288,
@@ -11277,14 +12409,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 580
   },
   {
     "id": 289,
@@ -11320,14 +12455,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 584
   },
   {
     "id": 290,
@@ -11359,14 +12497,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 915
   },
   {
     "id": 291,
@@ -11398,14 +12539,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 299
   },
   {
     "id": 292,
@@ -11438,14 +12582,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 904
   },
   {
     "id": 293,
@@ -11476,14 +12623,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 750
   },
   {
     "id": 294,
@@ -11514,14 +12664,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 839
   },
   {
     "id": 295,
@@ -11552,14 +12705,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 991
   },
   {
     "id": 296,
@@ -11589,14 +12745,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 805
   },
   {
     "id": 297,
@@ -11631,14 +12790,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 905
   },
   {
     "id": 298,
@@ -11673,14 +12835,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 598
   },
   {
     "id": 299,
@@ -11711,14 +12876,17 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 865
   },
   {
     "id": 300,
@@ -11749,13 +12917,16 @@
         "image",
         "steps"
       ],
-      "dummy": [],
+      "dummy": [
+        "popularity"
+      ],
       "unknown": [
         "description",
         "setup",
         "tips"
       ],
       "stepsLang": "ko"
-    }
+    },
+    "popularity": 974
   }
 ]

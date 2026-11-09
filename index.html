@@ -7,8 +7,8 @@
 <meta name="theme-color" content="#ffffff">
 <meta http-equiv="Cache-Control" content="no-cache">
 <title>코어시크 coreseek</title>
-<link rel="stylesheet" href="./css/style.css?v=20261109e">
-<script src="./js/app.js?v=20261109e" defer></script>
+<link rel="stylesheet" href="./css/style.css?v=20261109g">
+<script src="./js/app.js?v=20261109g" defer></script>
 </head>
 <body>
 <div class="app">
@@ -20,19 +20,7 @@
     <div class="scrim" data-menu></div>
     <aside class="panel">
       <div class="phead"><b>전체 메뉴</b><button class="x" data-menu aria-label="닫기">✕</button></div>
-      <h4>메뉴</h4>
-      <button class="mi" data-go="home">홈<i>›</i></button>
-      <button class="mi" data-go="explore">운동 탐색<i>›</i></button>
-      <h4>부위별</h4>
-      <div class="row"><button class="chip" data-part="가슴">가슴</button><button class="chip" data-part="등">등</button><button class="chip" data-part="하체">하체</button><button class="chip" data-part="어깨">어깨</button><button class="chip" data-part="팔">팔</button><button class="chip" data-part="복근">복근</button></div>
-      <h4>난이도별</h4>
-      <div class="row"><button class="chip" data-level="초급">초급</button><button class="chip" data-level="중급">중급</button></div>
-      <h4>기구별</h4>
-      <div class="row"><button class="chip" data-equip="맨몸">맨몸</button><button class="chip" data-equip="머신">머신</button><button class="chip" data-equip="덤벨">덤벨</button><button class="chip" data-equip="바벨">바벨</button></div>
-      <h4>내 운동</h4>
-      <button class="mi" data-mytab="favs">관심 운동<i>›</i></button>
-      <button class="mi" data-mytab="recent">최근 본 운동<i>›</i></button>
-      <p class="src-note">운동 정보는 저장해 둔 JSON 파일과 공개 데이터인 Free Exercise DB에서 가져와요. 설명, 기구 맞추기, 주의할 점 일부는 수업 실습용으로 AI가 쓴 글이에요.</p>
+      <div id="menu-body"></div>
     </aside>
   </div>
   <main id="screen-view"></main>
