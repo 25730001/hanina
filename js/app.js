@@ -206,7 +206,7 @@ function render() {
 /* ---------- 데이터 불러오기 ---------- */
 function loadData() {
   S.load = "loading"; render();
-  fetch(DATA_URL)
+  fetch(DATA_URL, { cache: "no-cache" })   // 항상 최신 JSON 확인
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) { EX = d; S.load = "ok"; console.log("[코어시크] 저장 JSON " + EX.length + "건"); render(); loadApi(); })
     .catch(function () { S.load = "error"; render(); });
