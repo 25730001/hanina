@@ -158,3 +158,55 @@ button.bd.on{background:var(--ac);color:var(--acfg)}
 .wipe{width:100%;margin-top:10px;padding:11px;font-size:14px;background:var(--fill);color:var(--fg)}
 .wipe.on{background:#d70015;color:#fff}
 .panel .src-note{margin:0}
+
+/* ===== v0.5: 누를 수 있다는 게 보이게 ===== */
+.card,.tile,.chip,.rank li,.mi,button{-webkit-tap-highlight-color:transparent;transition:transform .12s ease,background-color .12s ease,box-shadow .12s ease}
+.card:active,.tile:active,.rank li:active{transform:scale(.98)}
+.chip:active,button:active{transform:scale(.96)}
+/* 많이 찾는 운동: 한 줄씩 버튼처럼 */
+.rank{display:flex;flex-direction:column;gap:8px}
+.rank li{padding:12px;border:0;border-radius:14px;background:var(--fill);box-shadow:0 1px 0 var(--line)}
+.rank li:last-child{border-bottom:0}
+.rank li:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.rank li:active{background:var(--fill2)}
+.rank em{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--bg);font-size:13px}
+.rank li:first-child em{background:var(--ac);color:var(--acfg)}
+.rk-go{font-size:22px;line-height:1;color:var(--mut);margin-left:2px}
+@media (hover:hover){.rank li:hover,.card:hover,.tile:hover{background:var(--fill2)}}
+/* ===== v0.5: 로그인·회원가입 (전체 메뉴) ===== */
+.menu-btn{position:relative}
+.menu-btn.in::after{content:"";position:absolute;top:6px;right:4px;width:8px;height:8px;border-radius:50%;background:#34c759;box-shadow:0 0 0 2px var(--bg)}
+.acct{margin:4px 0 6px;padding:14px;border-radius:16px;background:var(--fill)}
+.seg{display:flex;padding:3px;border-radius:12px;background:var(--fill2);margin-bottom:12px}
+.seg button{flex:1;padding:8px;border-radius:9px;background:none;font-size:14px;color:var(--mut)}
+.seg button.on{background:var(--bg);color:var(--fg);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.auth label{display:block;font-size:12px;color:var(--mut);margin-bottom:10px}
+.auth input{display:block;width:100%;margin-top:4px;padding:11px 12px;font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.auth input:focus{outline:2px solid var(--ac);outline-offset:0;border-color:transparent}
+#auth-msg{min-height:18px;margin:2px 0 8px;font-size:13px}
+#auth-msg.err{color:#d70015}
+#auth-msg.ok{color:var(--mut)}
+.primary{width:100%;padding:12px;font-size:15px;font-weight:600;background:var(--ac);color:var(--acfg)}
+.primary:disabled{opacity:.5}
+.ghost{width:100%;margin-top:12px;padding:10px;background:var(--bg);font-size:14px}
+.acct .note{margin:10px 0 0;font-size:11px}
+.hi{display:flex;align-items:center;gap:12px}
+.hi .avatar{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--ac);color:var(--acfg);font-weight:700;font-size:17px}
+.hi b{display:block;font-size:16px}
+.hi small{font-size:12px;color:var(--mut)}
+/* ===== v0.5: 홈 첫 블록 하나로 (질문 → 검색 → 부위) ===== */
+.hello b{font-size:20px}
+.hello p{margin:4px 0 12px;font-size:13px}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.part{padding:12px 4px;border-radius:12px;background:var(--bg);font-size:15px;font-weight:600;color:var(--fg)}
+.part:active{background:var(--ac);color:var(--acfg)}
+@media (hover:hover){.part:hover{background:var(--fill2)}}
+.rank li .rk-bar{flex:1}
+/* ===== v0.5: 오른쪽 위 로그인 / 로그아웃 버튼 (햄버거 대신) ===== */
+.auth-btn{padding:7px 14px;border-radius:999px;font-size:14px;font-weight:600;background:var(--ac);color:var(--acfg);white-space:nowrap}
+.auth-btn.signed{background:var(--fill);color:var(--fg)}
+.panel .acct{margin-top:8px}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);max-width:calc(100% - 32px);padding:10px 16px;border-radius:999px;background:var(--ac);color:var(--acfg);font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.records{margin-top:28px;padding-top:4px;border-top:1px solid var(--line)}
+.records .src-note{margin:0;font-size:12px;color:var(--mut);line-height:1.6}
