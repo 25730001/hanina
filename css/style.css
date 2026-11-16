@@ -210,3 +210,10 @@ button.bd.on{background:var(--ac);color:var(--acfg)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 .records{margin-top:28px;padding-top:4px;border-top:1px solid var(--line)}
 .records .src-note{margin:0;font-size:12px;color:var(--mut);line-height:1.6}
+/* v0.5: 로그인 아이콘, 상세 이전 버튼, 순위 저장 수 */
+.auth-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border-radius:50%;background:var(--fill);color:var(--fg)}
+.auth-btn svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.auth-btn.signed{background:var(--ac);color:var(--acfg)}
+.auth-btn.signed svg{fill:currentColor}
+.back{display:inline-flex;align-items:center;margin:0 0 10px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--fill);font-size:14px;font-weight:600;color:var(--fg)}
+.rk-fav{flex:none;font-size:12px;color:var(--mut);white-space:nowrap}

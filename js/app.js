@@ -312,9 +312,9 @@ var VIEWS = {
       + '<p>부위를 고르거나 운동을 검색하세요</p>'
       + '<input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색">'
       + '<div class="parts" role="group" aria-label="부위 선택">' + PARTS.map(function (p) { return '<button class="part" data-part="' + p + '">' + p + "</button>"; }).join("") + "</div></section>"
-      + '<h3>요즘 많이 찾는 운동<a data-sortgo="popular">전체 순위</a></h3><ol class="rank">' + top.map(function (x, i) {
+      + '<h3>요즘 많이 찾는 운동</h3><ol class="rank">' + top.map(function (x, i) {
           return '<li role="button" tabindex="0" aria-label="' + (i + 1) + '위 ' + esc(x.name) + ' 운동 방법 보기" data-go="detail" data-id="' + x.id + '"><em>' + (i + 1) + '</em><span class="rk-name">' + esc(x.name) + '<small>' + x.category + " " + x.equipment + '</small></span>'
-            + '<span class="rk-bar"><i style="width:' + Math.round(x.popularity / max * 100) + '%"></i></span><span class="rk-go" aria-hidden="true">›</span></li>';
+            + '<span class="rk-bar"><i style="width:' + Math.round(x.popularity / max * 100) + '%"></i></span><span class="rk-fav" aria-label="' + favCount(x).toLocaleString() + '명 저장">★ ' + favCount(x).toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
         }).join("") + '</ol>'
       + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
@@ -331,7 +331,7 @@ var VIEWS = {
     var x = get(S.id);
     if (!x) return empty("이 운동을 찾지 못했어요", "목록으로 돌아가서 다시 골라 주세요.", '<br><button data-go="explore">목록으로</button>');
     var on = S.fav.indexOf(x.id) >= 0, m = x.meta || {}, unk = (m.unknown || []).length;
-    return '<div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div>' + bds(x) + "</div>"
+    return '<button class="back" data-back aria-label="이전 화면으로">‹ 이전</button><div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div>' + bds(x) + "</div>"
       + rateLine(x)
       + '<p class="desc">' + (x.description ? esc(x.description) + tag(m, "description") : '<span class="none">아직 설명이 없어요.</span>') + "</p>"
       + (x.api ? '<h3><span>쓰는 근육</span></h3><ul><li>주로 ' + esc(x.primary.join(", ")) + eul(x.primary[x.primary.length - 1]) + " 써요</li>" + (x.secondary.length ? "<li>" + esc(x.secondary.join(", ")) + "도 같이 써요</li>" : "") + ([x.force, x.mechanic].filter(Boolean).length ? "<li>" + esc([x.force, x.mechanic].filter(Boolean).join(", ")) + " 운동이에요</li>" : "") + "</ul>" : "")
@@ -350,6 +350,8 @@ var VIEWS = {
   }
 };
 
+function favCount(x) { return (x.popularity || 0) + (S.fav.indexOf(x.id) >= 0 ? 1 : 0); }   // 저장한 사람 수 (내 저장 포함)
+var USER_ICON = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
 function render(keepScroll) {
   if (S.load == "loading") { screenView.innerHTML = empty("운동 정보를 가져오고 있어요", "잠깐만 기다려 주세요."); return; }
   if (S.load == "error") { screenView.innerHTML = empty("운동 정보를 가져오지 못했어요", "파일을 바로 열면 운동 정보를 읽을 수 없어요. GitHub Pages 주소로 들어와 주세요.", "<br><button data-retry>다시 불러오기</button>"); return; }
@@ -357,7 +359,7 @@ function render(keepScroll) {
   screenView.innerHTML = VIEWS[S.scr]();
   if (typing) { var si = document.querySelector("#search-input"); if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); } }   // 입력 중이면 커서 유지
   var ab = document.querySelector(".auth-btn");   // 오른쪽 위: 로그인 ↔ 로그아웃
-  if (ab) { ab.textContent = auth.user ? "로그아웃" : "로그인"; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? auth.user.id + "님, 로그아웃" : "로그인 또는 회원가입"); }
+  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? auth.user.id + "님, 로그아웃" : "로그인 또는 회원가입"); }
   var navOn = S.scr == "detail" ? "explore" : S.scr;
   Array.prototype.forEach.call(bottomNav.children, function (b) { b.className = b.getAttribute("data-go") == navOn ? "on" : ""; });
   if (!keepScroll) screenView.scrollTop = 0;
@@ -393,6 +395,7 @@ function loadApi() {
 }
 
 function go(s, id) {
+  if (s == "detail" && S.scr != "detail") S.back = { scr: S.scr, top: screenView.scrollTop };   // 상세에서 돌아갈 화면과 스크롤 위치
   S.scr = s; S.limit = PAGE;
   if (s == "detail") { if (S.id !== +id) S.draft = { star: 0, parts: [], text: "" }; S.id = +id; S.rec = [S.id].concat(S.rec.filter(function (i) { return i != S.id; })).slice(0, 10); save(); }
   menuList.classList.remove("open"); render();
@@ -404,7 +407,7 @@ function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
-  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-del],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn]");
+  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-del],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn]");
   if (!t) return;
   var d = t.dataset;
   if (d.retry !== undefined) { loadData(); return; }
@@ -451,6 +454,7 @@ document.addEventListener("click", function (e) {
   }
   if (d.tab) { S.tab = d.tab; render(); return; }
   if (d.reset !== undefined) { resetAll(); return; }
+  if (d.back !== undefined) { var b = S.back || { scr: "home", top: 0 }; S.scr = b.scr; render(true); screenView.scrollTop = b.top; return; }
   if (d.go) { go(d.go, d.id); }
 });
 /* 탐색 화면 검색창: 입력할 때마다 목록만 다시 그림 (공백·대소문자 무시) */
