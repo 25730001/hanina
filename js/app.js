@@ -143,7 +143,7 @@ function apiNote() {
   return "";
 }
 function items(a) { return (a && a.length) ? a.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") : ""; }
-function tag(m, k) { var t = (m.real || []).indexOf(k) >= 0 ? "real" : ((m.dummy || []).indexOf(k) >= 0 ? "dummy" : ""); return t ? '<span class="tag ' + t + '">' + (t == "real" ? "실제" : "더미") + "</span>" : ""; }
+function tag() { return ""; }   // v0.5: 실제/더미 표시는 화면에서 숨김 (데이터의 meta에는 그대로 기록)
 
 /* ---------- 결과 목록 (9주차 renderList: 건수·카드·결과 없음을 한 번에) ---------- */
 function listHTML() {
@@ -152,8 +152,7 @@ function listHTML() {
     + '<span class="tools"><select data-sort aria-label="정렬">' + Object.keys(SORTERS).map(function (k) {
         return '<option value="' + k + '"' + (S.sort == k ? " selected" : "") + ">" + SORT_LABEL[k] + "</option>";
       }).join("") + '</select><button data-reset aria-label="전체 조건 초기화">↺</button></span></div>';
-  /* 더미 필드로 거르는 조건이면 실습용 값이라는 안내를 함께 보여 줌 */
-  if (S.filters.indexOf("guide") >= 0) bar += '<p class="note">설명이 있는 운동은 16개예요. 이 설명은 수업 실습용으로 AI가 쓴 예시라서 전문가 검수를 거치지 않았어요.</p>';
+
   if (!r.length) {
     var tokens = S.picked.slice(); if (S.q) tokens.unshift("q:");
     var rm = tokens.slice().reverse().filter(function (t) { return results(without(t)).length; })[0];
@@ -199,7 +198,7 @@ function reviewBox(x) {
   list.forEach(function (r) { r.parts.forEach(function (p) { cnt[p] = (cnt[p] || 0) + 1; }); });
   var top = Object.keys(cnt).sort(function (p, q) { return cnt[q] - cnt[p]; }).slice(0, 3);
   var dr = S.draft, opts = effectParts(x);
-  var h = '<h3><span>운동 후기' + (x.sampleReviews ? '<span class="tag dummy">예시 포함</span>' : "") + "</span></h3>";
+  var h = '<h3><span>운동 후기' + "" + "</span></h3>";
   if (list.length) {
     h += '<div class="rv-sum"><div class="rv-avg"><b>' + a + '</b><span>' + stars(a) + "</span><small>후기 " + list.length + "개</small></div>"
       + '<div class="rv-parts"><small>효과를 느낀 부위</small>' + top.map(function (p) {
@@ -212,10 +211,10 @@ function reviewBox(x) {
     + opts.map(function (p) { return '<button class="chip' + (dr.parts.indexOf(p) >= 0 ? " on" : "") + '" data-rpart="' + esc(p) + '">' + esc(p) + "</button>"; }).join("")
     + '</div><textarea id="review-text" maxlength="100" rows="2" placeholder="한 줄로 남겨 주세요. 예) 무릎 대고 시작하니 할 만했어요">' + esc(dr.text) + "</textarea>"
     + (dr.err ? '<p class="err">' + dr.err + "</p>" : "")
-    + '<button class="rv-send" data-rsend>후기 남기기</button><p class="note">후기는 이 기기에만 저장돼요.</p></div>';
+    + '<button class="rv-send" data-rsend>후기 남기기</button></div>';
   h += list.length ? '<ul class="rv-list">' + list.map(function (r) {
       return "<li><div><b>" + stars(r.rating) + "</b> " + r.parts.map(function (p) { return '<span class="bd">' + esc(p) + "</span>"; }).join("")
-        + (r.sample ? '<span class="tag dummy">예시</span>' : '<span class="tag real">내 후기</span>') + "</div><p>" + esc(r.text || "") + "</p>"
+        + (r.sample ? "" : '<span class="tag real">내 후기</span>') + "</div><p>" + esc(r.text || "") + "</p>"
         + (r.mine ? '<button class="link" data-rdel="' + r.idx + '">삭제</button>' : "") + "</li>";
     }).join("") + "</ul>" : '<p class="none">아직 후기가 없어요. 첫 후기를 남겨 주세요.</p>';
   return h;
@@ -263,7 +262,6 @@ function setUser(id) {
 }
 function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { m.textContent = t; m.className = ok ? "ok" : "err"; } }
 function accountHTML() {
-  var where = SHEET_URL ? "계정은 구글 시트에 저장돼요." : "계정은 이 기기의 브라우저에 저장돼요.";
   if (auth.user) {   // (창이 열린 채 로그인된 경우만)
     return '<section class="acct"><div class="hi"><span class="avatar">' + esc(auth.user.id.charAt(0).toUpperCase()) + '</span><div><b>' + esc(auth.user.id) + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
       + '<button class="ghost" data-authbtn>로그아웃</button></section>';
@@ -276,7 +274,7 @@ function accountHTML() {
     + '<label>비밀번호<input name="pw" type="password" autocomplete="' + (l ? "current-password" : "new-password") + '" maxlength="32" placeholder="' + (l ? "비밀번호" : "영문과 숫자를 섞어 8자 이상") + '"></label>'
     + (l ? "" : '<label>비밀번호 확인<input name="pw2" type="password" autocomplete="new-password" maxlength="32" placeholder="한 번 더 입력"></label>')
     + '<p id="auth-msg" role="alert"></p><button class="primary" type="submit">' + (l ? "로그인" : "가입하기") + "</button></form>"
-    + '<p class="note">' + where + " 수업용 프로토타입이니 다른 곳에서 쓰는 비밀번호는 쓰지 마세요.</p></section>";
+    + "</section>";
 }
 /* 오른쪽 위 로그인 창 (햄버거 메뉴 대신) */
 var menuBody = document.querySelector("#menu-body");
@@ -296,14 +294,14 @@ function toast(t) {
   if (!el) { el = document.createElement("div"); el.id = "toast"; el.setAttribute("role", "status"); document.body.appendChild(el); }
   el.textContent = t; el.className = "show"; clearTimeout(toast.t); toast.t = setTimeout(function () { el.className = ""; }, 2000);
 }
-/* 보관함 아래: 내 기록 관리와 데이터 출처 (전체 메뉴에서 옮겨 옴) */
+/* 보관함 아래: 내 기록 관리 (전체 메뉴에서 옮겨 옴) */
 function recordsHTML() {
   var nRev = Object.keys(S.reviews).reduce(function (s, k) { return s + S.reviews[k].length; }, 0);
   var has = S.fav.length + S.rec.length + nRev;
   return '<section class="records"><h3>내 기록</h3><div class="mine"><span><b>' + S.fav.length + '</b>저장한 운동</span><span><b>' + S.rec.length + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
-    + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "이 기기에 남은 기록 지우기") + "</button>"
-           : '<p class="note">기록은 이 기기에만 저장돼요.</p>')
-    + '<h3>데이터 출처</h3><p class="src-note">운동 목록과 운동 방법, 쓰는 근육 정보는 공개 데이터인 Free Exercise DB에서 가져왔어요. 1~16번 운동의 설명, 기구 맞추기, 조심할 점과 인기 순위, 예시 후기는 수업 실습용으로 만든 값이에요.</p></section>';
+    + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>"
+           : "")
+    + "</section>";
 }
 var VIEWS = {
   home: function () {
@@ -333,17 +331,16 @@ var VIEWS = {
     var x = get(S.id);
     if (!x) return empty("이 운동을 찾지 못했어요", "목록으로 돌아가서 다시 골라 주세요.", '<br><button data-go="explore">목록으로</button>');
     var on = S.fav.indexOf(x.id) >= 0, m = x.meta || {}, unk = (m.unknown || []).length;
-    return '<div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div><span class="bd src">JSON</span>' + (x.api ? '<span class="bd src">API</span>' : "") + bds(x) + "</div>"
+    return '<div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div>' + bds(x) + "</div>"
       + rateLine(x)
-      + '<p class="meta">저장해 둔 JSON 파일' + (x.api ? "과 Free Exercise DB에서" : "에서") + " 가져온 정보예요. 실제 정보 " + (m.real || []).length + "개" + ((m.dummy || []).length ? ", 실습용 예시 " + m.dummy.length + "개" : "") + (unk ? ", 아직 비어 있는 항목 " + unk + "개" : "") + "가 있어요.</p>"
       + '<p class="desc">' + (x.description ? esc(x.description) + tag(m, "description") : '<span class="none">아직 설명이 없어요.</span>') + "</p>"
-      + (x.api ? '<h3><span>쓰는 근육<span class="tag real">API</span></span></h3><ul><li>주로 ' + esc(x.primary.join(", ")) + eul(x.primary[x.primary.length - 1]) + " 써요</li>" + (x.secondary.length ? "<li>" + esc(x.secondary.join(", ")) + "도 같이 써요</li>" : "") + ([x.force, x.mechanic].filter(Boolean).length ? "<li>" + esc([x.force, x.mechanic].filter(Boolean).join(", ")) + " 운동이에요</li>" : "") + "</ul>" : "")
+      + (x.api ? '<h3><span>쓰는 근육</span></h3><ul><li>주로 ' + esc(x.primary.join(", ")) + eul(x.primary[x.primary.length - 1]) + " 써요</li>" + (x.secondary.length ? "<li>" + esc(x.secondary.join(", ")) + "도 같이 써요</li>" : "") + ([x.force, x.mechanic].filter(Boolean).length ? "<li>" + esc([x.force, x.mechanic].filter(Boolean).join(", ")) + " 운동이에요</li>" : "") + "</ul>" : "")
       + "<h3><span>기구 맞추기" + tag(m, "setup") + "</span></h3>" + (x.setup && x.setup.length ? "<ul>" + items(x.setup) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
-      + "<h3><span>운동 방법" + tag(m, "steps") + "</span></h3>" + (m.stepsLang == "en" ? '<p class="note">영어 원문 그대로예요.</p>' : (m.stepsLang == "ko" ? '<p class="note">영어 원문을 우리말로 옮겼어요.</p>' : "")) + "<ol>" + items(x.steps) + "</ol>"
+      + "<h3><span>운동 방법" + tag(m, "steps") + "</span></h3>" + "" + "<ol>" + items(x.steps) + "</ol>"
       + "<h3><span>이것만 조심하세요" + tag(m, "tips") + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
       + reviewBox(x)
       + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "★ 저장했어요" : "☆ 저장해 두기") + "</button>"
-      + '<p class="src-foot">운동 정보는 누구나 쓸 수 있게 공개된 Free Exercise DB에서 가져왔어요. 더미라고 붙은 글은 수업 실습용으로 AI가 쓴 내용이에요.</p>';
+      ;
   },
   my: function () {
     var f = S.tab == "favs", ids = (f ? S.fav : S.rec).filter(function (i) { return get(i); });
