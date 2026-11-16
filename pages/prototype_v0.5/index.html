@@ -571,7 +571,7 @@ var VIEWS = {
       + '<h3>요즘 많이 찾는 운동<a data-sortgo="popular">전체 순위</a></h3><ol class="rank">' + top.map(function (x, i) {
           return '<li role="button" tabindex="0" aria-label="' + (i + 1) + '위 ' + esc(x.name) + ' 운동 방법 보기" data-go="detail" data-id="' + x.id + '"><em>' + (i + 1) + '</em><span class="rk-name">' + esc(x.name) + '<small>' + x.category + " " + x.equipment + '</small></span>'
             + '<span class="rk-bar"><i style="width:' + Math.round(x.popularity / max * 100) + '%"></i></span><span class="rk-go" aria-hidden="true">›</span></li>';
-        }).join("") + '</ol><p class="note">순위는 수업 실습용 예시예요.</p>'
+        }).join("") + '</ol>'
       + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
   /* 검색 보드(검색창 + 부위·난이도·기구·조건)를 목록 위에 한 덩어리로 */
