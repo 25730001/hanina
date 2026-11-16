@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
 <meta http-equiv="Cache-Control" content="no-cache">
 <title>코어시크 prototype v0.5</title>
 <style>
@@ -233,6 +234,65 @@ nav button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width
 nav button.on svg{fill:currentColor}
 nav button.on svg .ln{fill:none}
 nav button[data-go="explore"].on svg{fill:none;stroke-width:2.6}
+
+/* ================================================================
+   v0.5 프로토타입 톤앤매너: 블랙 배경 + 레드 포인트 (운동 기록 앱 스타일)
+   ================================================================ */
+:root{--bg:#000;--fg:#f5f5f7;--mut:#8e8e93;--line:#1f1f22;--fill:#151517;--fill2:#26262a;--ac:#ff453a;--acfg:#fff;--card:#1c1c1e;color-scheme:dark}
+body{background:#000}
+@media (min-width:500px){body{background:#0b0b0c}.app{box-shadow:0 0 0 1px #1f1f22}}
+button,input,select{background:var(--fill2);color:var(--fg)}
+input::placeholder{color:#6b6b70}
+/* 헤더 */
+.top{background:#000;border-bottom:0}
+.logo{color:#fff;font-size:18px;font-weight:800;letter-spacing:-.3px}
+.auth-btn{background:var(--fill2);color:#fff}
+.auth-btn.signed{background:var(--ac);color:#fff}
+/* 제목: 굵고 크게 */
+main h3{font-size:18px;font-weight:800;letter-spacing:-.3px;color:#fff}
+main h3 a{color:var(--mut);font-weight:500}
+.title{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.eng{color:var(--mut)}
+/* 홈 첫 블록 */
+.hello{background:linear-gradient(160deg,#1c1c1e 0%,#121214 100%);border:1px solid #232327}
+.hello b{font-size:22px;font-weight:800;letter-spacing:-.4px}
+.hello .in{background:#000;border:1px solid #2a2a2e}
+.part{background:#000;border:1px solid #2a2a2e;color:#fff}
+.part:active{background:var(--ac);border-color:var(--ac)}
+/* 순위: 빨간 원 번호, 빨간 막대 */
+.rank li{background:var(--card);box-shadow:none}
+.rank li:active{background:var(--fill2)}
+.rank em{width:28px;height:28px;border-radius:50%;background:var(--ac);color:#fff;font-weight:800}
+.rank li:first-child em{background:var(--ac)}
+.rk-bar{background:#2c2c2e;height:6px}
+.rk-bar i{background:var(--ac)}
+.rk-fav{color:#c7c7cc;font-weight:600}
+/* 카드, 타일, 칩 */
+.card,.tile{background:var(--card)}
+.chip{background:var(--fill2);color:#e5e5ea}
+.chip.on,.board .chip.on{background:var(--ac);color:#fff}
+.board .chip{background:#000}
+.bd{background:#2c2c2e;color:#e5e5ea}
+/* 운동 상세 */
+.hero{background:#111}
+.back{background:var(--fill2);color:#fff}
+.rate{color:var(--mut)}
+.rate b,.rate .st{color:var(--ac)}
+main ol li::marker{color:var(--ac);font-weight:800}
+.save{background:var(--ac);color:#fff;font-weight:700}
+.save.on{background:var(--fill2);color:var(--ac)}
+/* 보관함 숫자: 큰 숫자 + 빨간 강조 */
+.mine span{background:var(--card);color:var(--mut)}
+.mine b{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.mine span:first-child b{color:var(--ac)}
+/* 로그인 창 */
+.panel{background:#0d0d0f}
+.primary{background:var(--ac);color:#fff}
+/* 하단 탭 */
+nav{background:#000;border-top:1px solid #1c1c1e}
+nav button{color:#6b6b70}
+nav button.on{color:var(--ac)}
+#toast{background:#2c2c2e;color:#fff}
 
 .wf-band{margin:0;padding:6px 16px;font-size:12px;text-align:center;background:var(--ac);color:var(--acfg)}
 .wf-band a{color:inherit;margin-left:6px;text-decoration:underline}
