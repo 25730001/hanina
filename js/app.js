@@ -323,12 +323,9 @@ function setUser(id, no, nick) {
 }
 function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { m.textContent = t; m.className = ok ? "ok" : "err"; } }
 function accountHTML() {
-  if (auth.user) {   // (창이 열린 채 로그인된 경우만)
-    var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length;
-    return '<section class="acct"><div class="hi"><span class="avatar">' + esc(who().charAt(0).toUpperCase()) + '</span><div><b>' + esc(who()) + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
-      + '<div class="mine mini"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span></div>'
-      + '<button class="ghost" data-logout>로그아웃</button>'
-      + '<p class="note">이 기기에 저장된 내 기록은 로그아웃해도 지워지지 않아요.</p></section>';
+  if (auth.user) {   // (창이 열린 채 로그인된 경우만) 이름과 로그아웃만. 내 기록은 보관함에서 봐요.
+    return '<section class="acct"><div class="hi"><span class="avatar">' + esc(who().charAt(0).toUpperCase()) + '</span><div><b>' + esc(who()) + '님</b></div>'
+      + '<button class="ghost" data-logout>로그아웃</button></div></section>';
   }
   var l = auth.tab === "login";
   return '<section class="acct"><div class="seg" role="tablist"><button role="tab" aria-selected="' + l + '" class="' + (l ? "on" : "") + '" data-authtab="login">로그인</button>'
@@ -362,26 +359,41 @@ function toast(t) {
   el.textContent = t; el.className = "show"; clearTimeout(toast.t); toast.t = setTimeout(function () { el.className = ""; }, 2000);
 }
 /* 보관함 아래: 내 기록 관리 (전체 메뉴에서 옮겨 옴) */
+function myCounts() {
+  var nRev = Object.keys(S.reviews).reduce(function (n, k) { return n + (get(+k) ? S.reviews[k].length : 0); }, 0);
+  return { favs: validIds(S.fav).length, recent: validIds(S.rec).length, revs: nRev };
+}
+/* 내 기록: 보관함 맨 위. 숫자 칸을 누르면 아래 목록이 바뀜 */
 function recordsHTML() {
-  var nRev = Object.keys(S.reviews).reduce(function (s, k) { return s + S.reviews[k].length; }, 0);
-  var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length, has = nFav + nRec + nRev;
-  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + esc(who()) + '님</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
-    + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>"
-           : "")
-    + "</section>";
+  var c = myCounts(), T = [["favs", "저장한 운동"], ["recent", "최근 본 운동"], ["revs", "남긴 후기"]];
+  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + esc(who()) + '님</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine" role="tablist">'
+    + T.map(function (t) { return '<button role="tab" aria-selected="' + (S.tab == t[0]) + '" class="' + (S.tab == t[0] ? "on" : "") + '" data-tab="' + t[0] + '"><b>' + c[t[0]] + "</b>" + t[1] + "</button>"; }).join("") + "</div></section>";
+}
+/* 내가 남긴 후기 모아 보기 */
+function myReviewsHTML() {
+  var rows = [];
+  Object.keys(S.reviews).forEach(function (k) { var x = get(+k); if (x) S.reviews[k].forEach(function (r, i) { rows.push({ x: x, r: r, i: i }); }); });
+  if (!rows.length) return empty("아직 남긴 후기가 없어요", "운동을 해 보고 별점과 한 줄 후기를 남겨 보세요.", '<br><button data-go="explore">운동 둘러보기</button>');
+  return '<ul class="rv-list mine-rv">' + rows.map(function (o) {
+    return '<li><a class="rv-ex" data-go="detail" data-id="' + o.x.id + '" role="button" tabindex="0">' + esc(o.x.name) + ' <span>›</span></a><div><b>' + stars(o.r.rating) + "</b> "
+      + o.r.parts.map(function (p) { return '<span class="bd">' + esc(p) + "</span>"; }).join("") + "</div>"
+      + (o.r.text ? "<p>" + esc(o.r.text) + "</p>" : "") + '<button class="link" data-rdelx="' + o.x.id + ":" + o.i + '">삭제</button></li>';
+  }).join("") + "</ul>";
 }
 var VIEWS = {
   home: function () {
-    var rec = homePicks(6);
-    var top = EX.slice().sort(SORTERS.popular).slice(0, 5), max = top.length ? top[0].popularity : 1;
-    /* 첫 화면 한 블록: 질문 → 검색 → 부위 선택 (소개와 부위 바로가기를 하나로 합침) */
+    var rec = homePicks(6), shots = homePicks(4);
+    var top = EX.slice().sort(SORTERS.popular).slice(0, 5);
+    var nums = top.map(function (x) { return x.popularity; }), hi = Math.max.apply(null, nums), lo = Math.min.apply(null, nums);
+    /* 첫 화면: 질문 → 검색 → 비주얼 → 부위 색 안내 */
     return '<section class="hello"><b>오늘은 어디를 운동할까요?</b>'
-      + '<p>부위를 고르거나 운동을 검색하세요</p>'
-      + '<input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색">'
-      + '<div class="parts" role="group" aria-label="부위 선택">' + PARTS.map(function (p) { return '<button class="part" data-part="' + p + '">' + p + "</button>"; }).join("") + "</div></section>"
+      + '<input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색"></section>'
+      + '<div class="vis" aria-hidden="true">' + shots.map(function (x, i) { return '<span class="slide" style="background-image:url(\'' + esc(x.image) + '\');animation-delay:' + (i * 5) + 's"></span>'; }).join("") + '<i class="shade"></i><p><b>코어시크</b>처음이어도 괜찮아요</p></div>'
+      + '<div class="legend" role="group" aria-label="부위 바로가기">' + PARTS.map(function (p, i) { return '<button class="lg p' + i + '" data-part="' + p + '"><i></i>' + p + "</button>"; }).join("") + "</div>"
       + '<h3>요즘 많이 찾는 운동</h3><ol class="rank">' + top.map(function (x, i) {
+          var w = hi == lo ? 100 : Math.round(30 + (x.popularity - lo) / (hi - lo) * 70);   // 가장 적은 운동도 보이게 30%부터
           return '<li role="button" tabindex="0" aria-label="' + (i + 1) + '위 ' + esc(x.name) + ' 운동 방법 보기" data-go="detail" data-id="' + x.id + '"><em>' + (i + 1) + '</em><span class="rk-name">' + esc(x.name) + '<small>' + x.category + " " + x.equipment + '</small></span>'
-            + '<span class="rk-bar"><i style="width:' + Math.round(x.popularity / max * 100) + '%"></i></span><span class="rk-fav" aria-label="' + favCount(x).toLocaleString() + '명 저장">★ ' + favCount(x).toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
+            + '<span class="rk-bar' + pcls(x.category) + '"><i style="width:' + w + '%"></i></span><span class="rk-fav" aria-label="' + favCount(x).toLocaleString() + '명 저장">♥ ' + favCount(x).toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
         }).join("") + '</ol>'
       + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
@@ -406,18 +418,21 @@ var VIEWS = {
       + "<h3><span>운동 방법" + "</span></h3>" + "" + "<ol>" + items(x.steps) + "</ol>"
       + "<h3><span>이것만 조심하세요" + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
       + reviewBox(x)
-      + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "★ 저장했어요" : "☆ 저장해 두기") + "</button>"
+      + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "♥ 저장했어요" : "♡ 저장해 두기") + "</button>"
       ;
   },
   my: function () {
-    var f = S.tab == "favs", favIds = validIds(S.fav), recIds = validIds(S.rec), ids = f ? favIds : recIds;
-    return '<div class="tabs"><button data-tab="favs" class="' + (f ? "on" : "") + '">관심 운동 ' + favIds.length + '</button><button data-tab="recent" class="' + (f ? "" : "on") + '">최근 본 운동 ' + recIds.length + '</button></div>'
+    var tb = S.tab, c = myCounts(), ids = tb == "favs" ? validIds(S.fav) : validIds(S.rec), body;
+    if (tb == "revs") body = myReviewsHTML();
+    else body = ids.length ? ids.map(function (i) { return card(get(i)); }).join("") : empty(tb == "favs" ? "아직 저장한 운동이 없어요" : "아직 본 운동이 없어요", tb == "favs" ? "마음에 드는 운동에 ♡를 눌러 두면 여기서 바로 꺼내 볼 수 있어요." : "운동을 열어 보면 여기에 하나씩 남아요.", '<br><button data-go="explore">운동 둘러보기</button>');
+    return recordsHTML()
       + (S.noStore ? '<p class="note">이 브라우저에서는 저장 기능을 사용할 수 없어요. 탐색과 상세는 그대로 쓸 수 있어요.</p>' : "")
-      + (ids.length ? ids.map(function (i) { return card(get(i)); }).join("") : empty(f ? "아직 저장한 운동이 없어요" : "아직 본 운동이 없어요", f ? "마음에 드는 운동을 저장해 두면 여기서 바로 꺼내 볼 수 있어요." : "운동을 열어 보면 여기에 하나씩 남아요.", '<br><button data-go="explore">운동 둘러보기</button>'))
-      + recordsHTML();
+      + body
+      + (c.favs + c.recent + c.revs ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>" : "");
   }
 };
 
+function pcls(cat) { var i = PARTS.indexOf(cat); return i < 0 ? "" : " p" + i; }   // 부위별 색 (p0~p5)
 function favCount(x) { return (x.popularity || 0) + (S.fav.indexOf(x.id) >= 0 ? 1 : 0); }   // 저장한 사람 수 (내 저장 포함)
 var USER_ICON = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
 function render(keepScroll) {
@@ -484,7 +499,7 @@ function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
-  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn],[data-logout]");
+  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-rdelx],[data-wipe],[data-authtab],[data-authbtn],[data-logout]");
   if (!t) return;
   var d = t.dataset;
   if (d.retry !== undefined) { loadData(); return; }
@@ -497,6 +512,7 @@ document.addEventListener("click", function (e) {
     (S.reviews[S.id] = S.reviews[S.id] || []).unshift({ rating: S.draft.star, parts: S.draft.parts.slice(), text: S.draft.text.trim().slice(0, 100) });
     S.draft = { star: 0, parts: [], text: "" }; save(); render(true); return;
   }
+  if (d.rdelx) { var q = d.rdelx.split(":"); (S.reviews[q[0]] || []).splice(+q[1], 1); if (S.reviews[q[0]] && !S.reviews[q[0]].length) delete S.reviews[q[0]]; save(); render(true); return; }
   if (d.rdel) { (S.reviews[S.id] || []).splice(+d.rdel, 1); save(); render(true); return; }
   if (d.api !== undefined) { loadApi(); return; }
   if (d.more !== undefined) { S.limit += PAGE; renderList(); return; }

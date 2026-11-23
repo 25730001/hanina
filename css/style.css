@@ -304,3 +304,38 @@ nav button.on{color:var(--ac)}
 .mine.mini{margin-top:12px}
 .privacy{margin:0 0 10px;font-size:12px;line-height:1.5;color:var(--mut)}
 .acct .ghost[data-logout]{color:var(--ac);font-weight:600}
+
+/* ===== v0.6 홈 비주얼 · 부위 색 · 내 기록 ===== */
+:root{--p0:#ff453a;--p1:#0a84ff;--p2:#30d158;--p3:#ff9f0a;--p4:#bf5af2;--p5:#64d2ff}
+.p0{--pc:var(--p0)}.p1{--pc:var(--p1)}.p2{--pc:var(--p2)}.p3{--pc:var(--p3)}.p4{--pc:var(--p4)}.p5{--pc:var(--p5)}
+.hello{padding:16px 16px 14px}
+.hello .in{margin-top:12px}
+.vis{position:relative;height:190px;margin:12px 0 4px;border-radius:18px;overflow:hidden;background:#111;isolation:isolate}
+.vis .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.02);animation:vis-fade 20s infinite}
+.vis .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.25) 100%)}
+.vis p{position:absolute;left:16px;bottom:14px;margin:0;color:#fff;font-size:14px;animation:vis-up .9s ease both}
+.vis p b{display:block;font-size:22px;font-weight:800;letter-spacing:-.4px;color:var(--ac)}
+@keyframes vis-fade{0%{opacity:0;transform:scale(1.02)}6%{opacity:1}25%{opacity:1}31%{opacity:0;transform:scale(1.14)}100%{opacity:0;transform:scale(1.14)}}
+@keyframes vis-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.vis .slide{animation:none}.vis .slide:first-child{opacity:1}.vis p{animation:none}}
+.legend{display:flex;gap:6px;overflow-x:auto;margin:10px 0 2px;padding-bottom:2px;scrollbar-width:none}
+.legend::-webkit-scrollbar{display:none}
+.lg{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--card,#1c1c1e);border:1px solid #2a2a2e;color:var(--fg);font-size:13px;font-weight:600}
+.lg i{width:9px;height:9px;border-radius:50%;background:var(--pc)}
+.rk-bar{background:#2c2c2e}
+.rk-bar[class*=" p"] i{background:var(--pc)}
+.rk-bar i{transition:width .5s ease}
+.rank li small{color:var(--mut)}
+.mine button{flex:1;padding:12px 4px;border-radius:12px;background:var(--card,#1c1c1e);border:1px solid transparent;text-align:center;font-size:12px;color:var(--mut)}
+.mine button b{display:block;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.mine button.on{border-color:var(--ac);background:rgba(255,69,58,.12);color:#fff}
+.mine button.on b{color:var(--ac)}
+.records{margin:2px 0 16px;padding-top:0;border-top:0}
+.rv-ex{display:flex;justify-content:space-between;font-weight:700;margin-bottom:4px;cursor:pointer}
+.rv-ex span{color:var(--mut)}
+.mine-rv li{padding:12px 0}
+.wipe{margin-top:20px}
+.acct .hi{display:flex;align-items:center;gap:12px}
+.acct .hi>div{flex:1;min-width:0}
+.acct .hi small{display:none}
+.acct .ghost[data-logout]{margin:0;width:auto;padding:8px 14px;font-size:13px;flex:none}
