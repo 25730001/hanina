@@ -285,16 +285,16 @@ function sheetPost(body) {   // text/plain으로 보내야 구글 Apps Script가
   return fetch(SHEET_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
     .then(function (r) { if (!r.ok) throw new Error("서버 응답 " + r.status); return r.json(); });
 }
-function signup(id, pw) {
-  if (SHEET_URL) return sheetPost({ action: "signup", id: id, pw: pw });
+function signup(id, pw, nick) {
+  if (SHEET_URL) return sheetPost({ action: "signup", id: id, pw: pw, nick: nick });
   var users = localUsers();
   if (users[id]) return Promise.resolve({ ok: false, msg: "이미 쓰고 있는 아이디예요." });
   var salt = randomSalt();
   return sha256(salt + pw).then(function (hash) {
     var no = Object.keys(users).reduce(function (m, k) { return Math.max(m, users[k].no || 0); }, 0) + 1;   // 가입 순서 번호
-    users[id] = { salt: salt, hash: hash, no: no, createdAt: new Date().toISOString() };
+    users[id] = { salt: salt, hash: hash, nick: nick, no: no, createdAt: new Date().toISOString() };
     localStorage.setItem("coreseekUsers", JSON.stringify(users));
-    return { ok: true, id: id, no: no };
+    return { ok: true, id: id, no: no, nick: nick };
   });
 }
 function login(id, pw) {
@@ -308,14 +308,16 @@ function login(id, pw) {
       u.no = Object.keys(users).reduce(function (m, k) { return Math.max(m, users[k].no || 0); }, 0) + 1;
       users[id].no = u.no; localStorage.setItem("coreseekUsers", JSON.stringify(users));
     }
-    return { ok: true, id: id, no: u.no };
+    return { ok: true, id: id, no: u.no, nick: u.nick || "" };
   });
 }
 /* 화면에는 아이디를 보여 주지 않고 "유저 N번"으로만 표시 (이름·이메일 등을 아이디로 쓴 경우에도 신상이 드러나지 않게) */
-function looksPersonal(id) { return /\d{6,}/.test(id); }   // 전화번호·생년월일·주민번호 앞자리 같은 숫자 연속 방지
-function who() { return auth.user && auth.user.no ? "유저 " + auth.user.no + "번" : "회원"; }
-function setUser(id, no) {
-  auth.user = id ? { id: id, no: no || 0, at: new Date().toISOString() } : null;
+var NICK_RULE = /^[가-힣A-Za-z0-9_]{2,10}$/;   // 한글, 영문, 숫자, 밑줄 2~10자 (공백, @, 특수문자 제외)
+function looksPersonal(t) { return /\d{6,}/.test(t); }   // 전화번호·생년월일·주민번호 앞자리 같은 숫자 연속 방지
+/* 화면에 보여 줄 이름: 닉네임 → (닉네임이 없는 v0.5 계정은) 유저 N번 → 회원. 아이디는 화면에 쓰지 않음 */
+function who() { return !auth.user ? "" : auth.user.nick ? auth.user.nick : auth.user.no ? "유저 " + auth.user.no + "번" : "회원"; }
+function setUser(id, no, nick) {
+  auth.user = id ? { id: id, no: no || 0, nick: nick || "", at: new Date().toISOString() } : null;
   try { if (id) localStorage.setItem("coreseekSession", JSON.stringify(auth.user)); else localStorage.removeItem("coreseekSession"); } catch (e) {}
   loadMine();   // 계정마다 저장함이 따로이므로 로그인·로그아웃 때 그 계정의 기록으로 바꿈
 }
@@ -323,7 +325,7 @@ function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { 
 function accountHTML() {
   if (auth.user) {   // (창이 열린 채 로그인된 경우만)
     var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length;
-    return '<section class="acct"><div class="hi"><span class="avatar">' + (auth.user.no || "·") + '</span><div><b>' + who() + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
+    return '<section class="acct"><div class="hi"><span class="avatar">' + esc(who().charAt(0).toUpperCase()) + '</span><div><b>' + esc(who()) + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
       + '<div class="mine mini"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span></div>'
       + '<button class="ghost" data-logout>로그아웃</button>'
       + '<p class="note">이 기기에 저장된 내 기록은 로그아웃해도 지워지지 않아요.</p></section>';
@@ -332,10 +334,11 @@ function accountHTML() {
   return '<section class="acct"><div class="seg" role="tablist"><button role="tab" aria-selected="' + l + '" class="' + (l ? "on" : "") + '" data-authtab="login">로그인</button>'
     + '<button role="tab" aria-selected="' + !l + '" class="' + (l ? "" : "on") + '" data-authtab="signup">회원가입</button></div>'
     + '<form class="auth" data-auth="' + auth.tab + '" novalidate>'
+    + (l ? "" : '<label>닉네임<input name="nick" autocomplete="nickname" spellcheck="false" maxlength="10" placeholder="2~10자 (실명 대신 별명을 써 주세요)"></label>')
     + '<label>아이디<input name="id" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="20" placeholder="영문 소문자, 숫자 4~20자"></label>'
     + '<label>비밀번호<input name="pw" type="password" autocomplete="' + (l ? "current-password" : "new-password") + '" maxlength="32" placeholder="' + (l ? "비밀번호" : "영문과 숫자를 섞어 8자 이상") + '"></label>'
     + (l ? "" : '<label>비밀번호 확인<input name="pw2" type="password" autocomplete="new-password" maxlength="32" placeholder="한 번 더 입력"></label>')
-    + (l ? "" : '<p class="privacy">이름, 전화번호, 이메일, 생년월일은 아이디로 쓰지 마세요. 가입할 때 저장하는 건 아이디, 암호로 바꾼 비밀번호, 가입 시각뿐이고 화면에는 아이디 대신 "유저 N번"으로 보여요.</p>')
+    + (l ? "" : '<p class="privacy">닉네임에는 실명 대신 별명을, 아이디에는 이름, 전화번호, 이메일, 생년월일을 쓰지 마세요. 화면에는 닉네임만 보여요. 가입할 때 저장하는 건 닉네임, 아이디, 암호로 바꾼 비밀번호, 가입 시각뿐이에요.</p>')
     + '<p id="auth-msg" role="alert"></p><button class="primary" type="submit">' + (l ? "로그인" : "가입하기") + "</button></form>"
     + "</section>";
 }
@@ -362,7 +365,7 @@ function toast(t) {
 function recordsHTML() {
   var nRev = Object.keys(S.reviews).reduce(function (s, k) { return s + S.reviews[k].length; }, 0);
   var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length, has = nFav + nRec + nRev;
-  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + who() + '</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
+  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + esc(who()) + '님</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
     + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>"
            : "")
     + "</section>";
@@ -534,16 +537,19 @@ document.addEventListener("submit", function (e) {
   e.preventDefault(); if (auth.busy) return;
   var mode = f.getAttribute("data-auth"), id = f.id.value.trim().toLowerCase(), pw = f.pw.value;
   if (!ID_RULE.test(id)) return authMsg("아이디는 영문 소문자, 숫자, 밑줄로 4~20자예요.");
+  var nick = mode === "signup" ? f.nick.value.trim() : "";
   if (mode === "signup") {
+    if (!NICK_RULE.test(nick)) return authMsg("닉네임은 한글, 영문, 숫자, 밑줄로 2~10자예요. (공백과 특수문자는 쓸 수 없어요)");
+    if (looksPersonal(nick)) return authMsg("전화번호나 생년월일처럼 개인을 알 수 있는 숫자(6자리 이상 연속)는 닉네임으로 쓸 수 없어요.");
     if (looksPersonal(id)) return authMsg("전화번호나 생년월일처럼 개인을 알 수 있는 숫자(6자리 이상 연속)는 아이디로 쓸 수 없어요.");
     if (!PW_RULE.test(pw)) return authMsg("비밀번호는 영문과 숫자를 섞어 8자 이상이에요.");
     if (pw !== f.pw2.value) return authMsg("비밀번호 확인이 달라요.");
   } else if (!pw) return authMsg("비밀번호를 입력해 주세요.");
   auth.busy = true; f.querySelector("button[type=submit]").disabled = true; authMsg(mode === "signup" ? "가입하는 중이에요…" : "확인하는 중이에요…", true);
-  (mode === "signup" ? signup(id, pw) : login(id, pw))
+  (mode === "signup" ? signup(id, pw, nick) : login(id, pw))
     .then(function (res) {
       if (!res || !res.ok) { authMsg((res && res.msg) || "다시 시도해 주세요."); return; }
-      setUser(res.id || id, res.no); closeAuth(); render(true);
+      setUser(res.id || id, res.no, res.nick || nick); closeAuth(); render(true);
       toast(mode === "signup" ? who() + "님, 가입을 환영해요!" : who() + "님, 반가워요");
     })
     .catch(function (err) { authMsg(err && err.message && err.message.indexOf("안전하게") >= 0 ? err.message : "연결에 실패했어요. 잠시 뒤 다시 시도해 주세요."); console.warn("[코어시크] 계정 처리 실패", err); })
