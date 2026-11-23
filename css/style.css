@@ -339,3 +339,14 @@ nav button.on{color:var(--ac)}
 .acct .hi>div{flex:1;min-width:0}
 .acct .hi small{display:none}
 .acct .ghost[data-logout]{margin:0;width:auto;padding:8px 14px;font-size:13px;flex:none}
+
+/* 로그아웃 확인창 */
+#logout-ask{display:none;position:fixed;inset:0;z-index:60}
+#logout-ask.open{display:flex;align-items:center;justify-content:center}
+#logout-ask .scrim{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+#logout-ask .dlg{position:relative;width:min(300px,86vw);padding:20px;border-radius:18px;background:#1c1c1e;border:1px solid #2a2a2e;color:#fff;text-align:center}
+#logout-ask .dlg b{font-size:17px}
+#logout-ask .dlg p{margin:8px 0 16px;font-size:13px;color:var(--mut)}
+#logout-ask .row2{display:flex;gap:8px}
+#logout-ask .row2 button{flex:1;padding:11px;border-radius:12px;background:#2c2c2e;color:#fff;font-weight:600}
+#logout-ask .row2 .primary{background:var(--ac)}

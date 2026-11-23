@@ -323,10 +323,6 @@ function setUser(id, no, nick) {
 }
 function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { m.textContent = t; m.className = ok ? "ok" : "err"; } }
 function accountHTML() {
-  if (auth.user) {   // (창이 열린 채 로그인된 경우만) 이름과 로그아웃만. 내 기록은 보관함에서 봐요.
-    return '<section class="acct"><div class="hi"><span class="avatar">' + esc(who().charAt(0).toUpperCase()) + '</span><div><b>' + esc(who()) + '님</b></div>'
-      + '<button class="ghost" data-logout>로그아웃</button></div></section>';
-  }
   var l = auth.tab === "login";
   return '<section class="acct"><div class="seg" role="tablist"><button role="tab" aria-selected="' + l + '" class="' + (l ? "on" : "") + '" data-authtab="login">로그인</button>'
     + '<button role="tab" aria-selected="' + !l + '" class="' + (l ? "" : "on") + '" data-authtab="signup">회원가입</button></div>'
@@ -343,11 +339,19 @@ function accountHTML() {
 var menuBody = document.querySelector("#menu-body");
 function openAuth(tab) {
   auth.tab = tab || "login";
-  var pt = document.querySelector("#panel-title"); if (pt) pt.textContent = auth.user ? "내 계정" : auth.tab === "signup" ? "회원가입" : "로그인";
+  var pt = document.querySelector("#panel-title"); if (pt) pt.textContent = auth.tab === "signup" ? "회원가입" : "로그인";
   menuBody.innerHTML = accountHTML();
   menuList.classList.add("open");
   var f = menuBody.querySelector("input[name=id]"); if (f) setTimeout(function () { if (menuList.classList.contains("open")) f.focus({ preventScroll: true }); }, 250);
 }
+/* 로그아웃 확인창: 로그인한 상태에서 사람 아이콘을 누르면 바로 로그아웃되지 않고 한 번 물어봄 */
+function askLogout() {
+  var d = document.querySelector("#logout-ask");
+  if (!d) { d = document.createElement("div"); d.id = "logout-ask"; document.body.appendChild(d); }
+  d.innerHTML = '<div class="scrim" data-lo-no></div><div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="lo-t"><b id="lo-t">로그아웃하시겠습니까?</b><p>' + esc(who()) + '님의 기록은 이 기기에 그대로 남아요.</p><div class="row2"><button data-lo-no>취소</button><button class="primary" data-lo-yes>로그아웃</button></div></div>';
+  d.className = "open"; var y = d.querySelector("[data-lo-yes]"); if (y) y.focus({ preventScroll: true });
+}
+function closeAsk() { var d = document.querySelector("#logout-ask"); if (d) d.className = ""; }
 function closeAuth() {   // 창 안에 포커스가 남아 있으면 화면이 옆으로 밀리므로 먼저 풀어 줌
   if (document.activeElement && menuList.contains(document.activeElement)) document.activeElement.blur();
   menuList.classList.remove("open");
@@ -442,7 +446,7 @@ function render(keepScroll) {
   screenView.innerHTML = VIEWS[S.scr]();
   if (typing) { var si = document.querySelector("#search-input"); if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); } }   // 입력 중이면 커서 유지
   var ab = document.querySelector(".auth-btn");   // 오른쪽 위: 로그인 ↔ 로그아웃
-  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? who() + "님, 내 계정 열기" : "로그인 또는 회원가입"); }
+  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? who() + "님, 로그아웃" : "로그인 또는 회원가입"); }
   var navOn = S.scr == "detail" ? "explore" : S.scr;
   Array.prototype.forEach.call(bottomNav.children, function (b) { b.className = b.getAttribute("data-go") == navOn ? "on" : ""; });
   if (!keepScroll) screenView.scrollTop = 0;
@@ -499,7 +503,7 @@ function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
-  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-rdelx],[data-wipe],[data-authtab],[data-authbtn],[data-logout]");
+  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-rdelx],[data-wipe],[data-authtab],[data-authbtn],[data-logout],[data-lo-no],[data-lo-yes]");
   if (!t) return;
   var d = t.dataset;
   if (d.retry !== undefined) { loadData(); return; }
@@ -518,7 +522,9 @@ document.addEventListener("click", function (e) {
   if (d.more !== undefined) { S.limit += PAGE; renderList(); return; }
   if (d.save) { toggleFav(+d.save); return; }
   if (d.menu !== undefined) { closeAuth(); return; }   // 바깥 어두운 부분이나 ✕
-  if (d.authbtn !== undefined) { openAuth("login"); return; }   // 로그인 전: 로그인 창, 로그인 후: 내 계정 창 (로그아웃은 창 안의 버튼)
+  if (d.loNo !== undefined) { closeAsk(); return; }
+  if (d.loYes !== undefined) { var n2 = who(); closeAsk(); setUser(null); render(true); toast(n2 + "님, 로그아웃했어요"); return; }
+  if (d.authbtn !== undefined) { if (auth.user) askLogout(); else openAuth("login"); return; }   // 로그인 전: 로그인 창, 로그인 후: 내 계정 창 (로그아웃은 창 안의 버튼)
   if (d.logout !== undefined) { var nm = who(); setUser(null); closeAuth(); render(true); toast(nm + "님, 로그아웃했어요"); return; }
   if (d.authtab) { openAuth(d.authtab); return; }
   if (d.wipe !== undefined) {   // 두 번 눌러야 지워지게 (실수 방지)
