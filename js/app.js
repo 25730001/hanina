@@ -387,17 +387,20 @@ function myReviewsHTML() {
 var VIEWS = {
   home: function () {
     var rec = homePicks(6), shots = homePicks(4);
-    var top = EX.slice().sort(SORTERS.popular).slice(0, 5);
-    var nums = top.map(function (x) { return x.popularity; }), hi = Math.max.apply(null, nums), lo = Math.min.apply(null, nums);
+    /* 부위별 인기: 운동 이름이 아니라 부위로 묶어서 저장 수를 합산 */
+    var agg = PARTS.map(function (p, i) {
+      var list = EX.filter(function (x) { return x.category === p; });
+      return { p: p, i: i, n: list.length, sum: list.reduce(function (t, x) { return t + favCount(x); }, 0) };
+    }).filter(function (o) { return o.n; }).sort(function (u, v) { return v.sum - u.sum; });
+    var hi = agg.length ? agg[0].sum : 1, lo = agg.length ? agg[agg.length - 1].sum : 0;
     /* 첫 화면: 질문 → 검색 → 비주얼 → 부위 색 안내 */
     return '<section class="hello"><b>오늘은 어디를 운동할까요?</b>'
       + '<input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색"></section>'
       + '<div class="vis" aria-hidden="true">' + shots.map(function (x, i) { return '<span class="slide" style="background-image:url(\'' + esc(x.image) + '\');animation-delay:' + (i * 5) + 's"></span>'; }).join("") + '<i class="shade"></i><p><b>코어시크</b>처음이어도 괜찮아요</p></div>'
-      + '<div class="legend" role="group" aria-label="부위 바로가기">' + PARTS.map(function (p, i) { return '<button class="lg p' + i + '" data-part="' + p + '"><i></i>' + p + "</button>"; }).join("") + "</div>"
-      + '<h3>요즘 많이 찾는 운동</h3><ol class="rank">' + top.map(function (x, i) {
-          var w = hi == lo ? 100 : Math.round(30 + (x.popularity - lo) / (hi - lo) * 70);   // 가장 적은 운동도 보이게 30%부터
-          return '<li role="button" tabindex="0" aria-label="' + (i + 1) + '위 ' + esc(x.name) + ' 운동 방법 보기" data-go="detail" data-id="' + x.id + '"><em>' + (i + 1) + '</em><span class="rk-name">' + esc(x.name) + '<small>' + x.category + " " + x.equipment + '</small></span>'
-            + '<span class="rk-bar' + pcls(x.category) + '"><i style="width:' + w + '%"></i></span><span class="rk-fav" aria-label="' + favCount(x).toLocaleString() + '명 저장">♥ ' + favCount(x).toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
+      + '<h3>요즘 많이 찾는 부위</h3><ol class="rank">' + agg.map(function (o, k) {
+          var w = hi == lo ? 100 : Math.round(30 + (o.sum - lo) / (hi - lo) * 70);   // 가장 낮은 부위도 보이게 30%부터
+          return '<li role="button" tabindex="0" aria-label="' + (k + 1) + '위 ' + o.p + ' 운동 보러 가기" data-part="' + o.p + '"><em>' + (k + 1) + '</em><span class="rk-name">' + o.p + '<small>운동 ' + o.n + '개</small></span>'
+            + '<span class="rk-bar p' + o.i + '"><i style="width:' + w + '%"></i></span><span class="rk-fav" aria-label="' + o.sum.toLocaleString() + '명 저장">♥ ' + o.sum.toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
         }).join("") + '</ol>'
       + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
   },
