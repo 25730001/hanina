@@ -29,13 +29,13 @@ function doPost(e) {
       if (found) return reply({ ok: false, msg: '이미 쓰고 있는 아이디예요.' });
       const salt = Utilities.getUuid().replace(/-/g, '');
       sheet.appendRow([id, salt, sha256(salt + pw), new Date(), '']);
-      return reply({ ok: true, id: id });
+      return reply({ ok: true, id: id, no: sheet.getLastRow() - 1 });   // 화면에는 아이디 대신 '유저 N번'으로 표시
     }
 
     if (body.action === 'login') {
       if (!found || sha256(found.salt + pw) !== found.hash) return reply({ ok: false, msg: '아이디나 비밀번호가 맞지 않아요.' });
       sheet.getRange(found.row, 5).setValue(new Date());
-      return reply({ ok: true, id: id });
+      return reply({ ok: true, id: id, no: found.row - 1 });
     }
 
     return reply({ ok: false, msg: '알 수 없는 요청이에요.' });

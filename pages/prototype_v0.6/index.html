@@ -311,6 +311,10 @@ nav button.on{color:var(--ac)}
 .hero .bg{filter:blur(20px) brightness(.55)}
 /* 키보드로 이동할 때 보이는 테두리 */
 .card:focus-visible,.tile:focus-visible,.heart:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+/* 계정 창: 로그인 후 요약, 개인정보 안내 */
+.mine.mini{margin-top:12px}
+.privacy{margin:0 0 10px;font-size:12px;line-height:1.5;color:var(--mut)}
+.acct .ghost[data-logout]{color:var(--ac);font-weight:600}
 
 .wf-band{margin:0;padding:6px 16px;font-size:12px;text-align:center;background:var(--ac);color:var(--acfg)}
 .wf-band a{color:inherit;margin-left:6px;text-decoration:underline}
@@ -633,27 +637,42 @@ function signup(id, pw) {
   if (users[id]) return Promise.resolve({ ok: false, msg: "이미 쓰고 있는 아이디예요." });
   var salt = randomSalt();
   return sha256(salt + pw).then(function (hash) {
-    users[id] = { salt: salt, hash: hash, createdAt: new Date().toISOString() };
+    var no = Object.keys(users).reduce(function (m, k) { return Math.max(m, users[k].no || 0); }, 0) + 1;   // 가입 순서 번호
+    users[id] = { salt: salt, hash: hash, no: no, createdAt: new Date().toISOString() };
     localStorage.setItem("coreseekUsers", JSON.stringify(users));
-    return { ok: true, id: id };
+    return { ok: true, id: id, no: no };
   });
 }
 function login(id, pw) {
   if (SHEET_URL) return sheetPost({ action: "login", id: id, pw: pw });
   var u = localUsers()[id];
   if (!u) return Promise.resolve({ ok: false, msg: "아이디나 비밀번호가 맞지 않아요." });
-  return sha256(u.salt + pw).then(function (hash) { return hash === u.hash ? { ok: true, id: id } : { ok: false, msg: "아이디나 비밀번호가 맞지 않아요." }; });
+  return sha256(u.salt + pw).then(function (hash) {
+    if (hash !== u.hash) return { ok: false, msg: "아이디나 비밀번호가 맞지 않아요." };
+    if (!u.no) {   // v0.5에서 가입한 계정에는 번호가 없으므로 이어서 부여
+      var users = localUsers();
+      u.no = Object.keys(users).reduce(function (m, k) { return Math.max(m, users[k].no || 0); }, 0) + 1;
+      users[id].no = u.no; localStorage.setItem("coreseekUsers", JSON.stringify(users));
+    }
+    return { ok: true, id: id, no: u.no };
+  });
 }
-function setUser(id) {
-  auth.user = id ? { id: id, at: new Date().toISOString() } : null;
+/* 화면에는 아이디를 보여 주지 않고 "유저 N번"으로만 표시 (이름·이메일 등을 아이디로 쓴 경우에도 신상이 드러나지 않게) */
+function looksPersonal(id) { return /\d{6,}/.test(id); }   // 전화번호·생년월일·주민번호 앞자리 같은 숫자 연속 방지
+function who() { return auth.user && auth.user.no ? "유저 " + auth.user.no + "번" : "회원"; }
+function setUser(id, no) {
+  auth.user = id ? { id: id, no: no || 0, at: new Date().toISOString() } : null;
   try { if (id) localStorage.setItem("coreseekSession", JSON.stringify(auth.user)); else localStorage.removeItem("coreseekSession"); } catch (e) {}
   loadMine();   // 계정마다 저장함이 따로이므로 로그인·로그아웃 때 그 계정의 기록으로 바꿈
 }
 function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { m.textContent = t; m.className = ok ? "ok" : "err"; } }
 function accountHTML() {
   if (auth.user) {   // (창이 열린 채 로그인된 경우만)
-    return '<section class="acct"><div class="hi"><span class="avatar">' + esc(auth.user.id.charAt(0).toUpperCase()) + '</span><div><b>' + esc(auth.user.id) + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
-      + '<button class="ghost" data-authbtn>로그아웃</button></section>';
+    var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length;
+    return '<section class="acct"><div class="hi"><span class="avatar">' + (auth.user.no || "·") + '</span><div><b>' + who() + '님</b><small>오늘도 가볍게 시작해 봐요</small></div></div>'
+      + '<div class="mine mini"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span></div>'
+      + '<button class="ghost" data-logout>로그아웃</button>'
+      + '<p class="note">이 기기에 저장된 내 기록은 로그아웃해도 지워지지 않아요.</p></section>';
   }
   var l = auth.tab === "login";
   return '<section class="acct"><div class="seg" role="tablist"><button role="tab" aria-selected="' + l + '" class="' + (l ? "on" : "") + '" data-authtab="login">로그인</button>'
@@ -662,6 +681,7 @@ function accountHTML() {
     + '<label>아이디<input name="id" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="20" placeholder="영문 소문자, 숫자 4~20자"></label>'
     + '<label>비밀번호<input name="pw" type="password" autocomplete="' + (l ? "current-password" : "new-password") + '" maxlength="32" placeholder="' + (l ? "비밀번호" : "영문과 숫자를 섞어 8자 이상") + '"></label>'
     + (l ? "" : '<label>비밀번호 확인<input name="pw2" type="password" autocomplete="new-password" maxlength="32" placeholder="한 번 더 입력"></label>')
+    + (l ? "" : '<p class="privacy">이름, 전화번호, 이메일, 생년월일은 아이디로 쓰지 마세요. 가입할 때 저장하는 건 아이디, 암호로 바꾼 비밀번호, 가입 시각뿐이고 화면에는 아이디 대신 "유저 N번"으로 보여요.</p>')
     + '<p id="auth-msg" role="alert"></p><button class="primary" type="submit">' + (l ? "로그인" : "가입하기") + "</button></form>"
     + "</section>";
 }
@@ -688,7 +708,7 @@ function toast(t) {
 function recordsHTML() {
   var nRev = Object.keys(S.reviews).reduce(function (s, k) { return s + S.reviews[k].length; }, 0);
   var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length, has = nFav + nRec + nRev;
-  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + esc(auth.user.id) + '님</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
+  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + who() + '</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
     + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>"
            : "")
     + "</section>";
@@ -750,7 +770,7 @@ function render(keepScroll) {
   screenView.innerHTML = VIEWS[S.scr]();
   if (typing) { var si = document.querySelector("#search-input"); if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); } }   // 입력 중이면 커서 유지
   var ab = document.querySelector(".auth-btn");   // 오른쪽 위: 로그인 ↔ 로그아웃
-  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? auth.user.id + "님, 로그아웃" : "로그인 또는 회원가입"); }
+  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? who() + "님, 내 계정 열기" : "로그인 또는 회원가입"); }
   var navOn = S.scr == "detail" ? "explore" : S.scr;
   Array.prototype.forEach.call(bottomNav.children, function (b) { b.className = b.getAttribute("data-go") == navOn ? "on" : ""; });
   if (!keepScroll) screenView.scrollTop = 0;
@@ -807,7 +827,7 @@ function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
-  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn]");
+  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn],[data-logout]");
   if (!t) return;
   var d = t.dataset;
   if (d.retry !== undefined) { loadData(); return; }
@@ -825,11 +845,8 @@ document.addEventListener("click", function (e) {
   if (d.more !== undefined) { S.limit += PAGE; renderList(); return; }
   if (d.save) { toggleFav(+d.save); return; }
   if (d.menu !== undefined) { closeAuth(); return; }   // 바깥 어두운 부분이나 ✕
-  if (d.authbtn !== undefined) {
-    if (auth.user) { var who = auth.user.id; setUser(null); render(true); toast(who + "님, 로그아웃했어요"); }
-    else openAuth("login");
-    return;
-  }
+  if (d.authbtn !== undefined) { openAuth("login"); return; }   // 로그인 전: 로그인 창, 로그인 후: 내 계정 창 (로그아웃은 창 안의 버튼)
+  if (d.logout !== undefined) { var nm = who(); setUser(null); closeAuth(); render(true); toast(nm + "님, 로그아웃했어요"); return; }
   if (d.authtab) { openAuth(d.authtab); return; }
   if (d.wipe !== undefined) {   // 두 번 눌러야 지워지게 (실수 방지)
     if (!S.wipe) { S.wipe = true; render(true); return; }
@@ -864,6 +881,7 @@ document.addEventListener("submit", function (e) {
   var mode = f.getAttribute("data-auth"), id = f.id.value.trim().toLowerCase(), pw = f.pw.value;
   if (!ID_RULE.test(id)) return authMsg("아이디는 영문 소문자, 숫자, 밑줄로 4~20자예요.");
   if (mode === "signup") {
+    if (looksPersonal(id)) return authMsg("전화번호나 생년월일처럼 개인을 알 수 있는 숫자(6자리 이상 연속)는 아이디로 쓸 수 없어요.");
     if (!PW_RULE.test(pw)) return authMsg("비밀번호는 영문과 숫자를 섞어 8자 이상이에요.");
     if (pw !== f.pw2.value) return authMsg("비밀번호 확인이 달라요.");
   } else if (!pw) return authMsg("비밀번호를 입력해 주세요.");
@@ -871,8 +889,8 @@ document.addEventListener("submit", function (e) {
   (mode === "signup" ? signup(id, pw) : login(id, pw))
     .then(function (res) {
       if (!res || !res.ok) { authMsg((res && res.msg) || "다시 시도해 주세요."); return; }
-      setUser(res.id || id); closeAuth(); render(true);
-      toast(mode === "signup" ? (res.id || id) + "님, 가입을 환영해요!" : (res.id || id) + "님, 반가워요");
+      setUser(res.id || id, res.no); closeAuth(); render(true);
+      toast(mode === "signup" ? who() + "님, 가입을 환영해요!" : who() + "님, 반가워요");
     })
     .catch(function (err) { authMsg(err && err.message && err.message.indexOf("안전하게") >= 0 ? err.message : "연결에 실패했어요. 잠시 뒤 다시 시도해 주세요."); console.warn("[코어시크] 계정 처리 실패", err); })
     .then(function () { auth.busy = false; var b = f.querySelector("button[type=submit]"); if (b) b.disabled = false; });
