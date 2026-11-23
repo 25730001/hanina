@@ -23,18 +23,61 @@ var S = { scr: "home", id: 1, q: "", f: { p: [], l: [], e: [] }, filters: [], pi
   more: false,                                   // 난이도·기구·조건 펼침 여부 (기본은 접힘)
   reviews: {}, draft: { star: 0, parts: [], text: "" } };   // 내가 쓴 후기, 작성 중인 후기
 var DEFAULT_SORT = "beginner";
-try {
-  S.fav = JSON.parse(localStorage.getItem("favoriteExerciseIds") || "[]");
-  S.rec = JSON.parse(localStorage.getItem("recentExerciseIds") || "[]");
-  S.reviews = JSON.parse(localStorage.getItem("exerciseReviews") || "{}");
-} catch (e) {}
-function save() {
-  try {
-    localStorage.setItem("favoriteExerciseIds", JSON.stringify(S.fav));
-    localStorage.setItem("recentExerciseIds", JSON.stringify(S.rec));
-    localStorage.setItem("exerciseReviews", JSON.stringify(S.reviews));
-  } catch (e) {}
+/* ---------- 내 기록 저장 (LocalStorage, v0.6) ----------
+   같은 GitHub Pages 주소(25730001.github.io)를 다른 프로젝트도 함께 쓰므로 키에 coreseek- 를 붙임.
+   OLD는 v0.5까지 쓰던 이름 — 처음 한 번만 새 이름으로 옮김.
+   읽기(read) → 모양 검사(idList·cleanReviews) → S에 보관 → 바뀔 때 save() */
+var NAME = { fav: "favorites", rec: "recent", rev: "reviews" };
+var OLD = { fav: "favoriteExerciseIds", rec: "recentExerciseIds", rev: "exerciseReviews" };
+/* 로그인한 계정이 있으면 coreseek-favorites:아이디 처럼 계정별로, 없으면 coreseek-favorites(손님)로 저장 */
+function uid() {
+  try { var u = JSON.parse(localStorage.getItem("coreseekSession") || "null"); return u && typeof u.id === "string" ? u.id : ""; } catch (e) { return ""; }
 }
+function keyOf(k) { var u = uid(); return "coreseek-" + NAME[k] + (u ? ":" + u : ""); }
+function read(k, fallback) {
+  try {
+    var raw = localStorage.getItem(keyOf(k));
+    if (raw == null && !uid()) {   // v0.5 이름으로 저장된 값(손님 기록)이 있으면 한 번 옮김
+      raw = localStorage.getItem(OLD[k]);
+      if (raw != null) { localStorage.setItem(keyOf(k), raw); localStorage.removeItem(OLD[k]); }
+    }
+    return raw == null ? fallback : JSON.parse(raw);
+  } catch (e) { return fallback; }   // 손상된 값, 저장이 막힌 브라우저 → 기본값
+}
+function idList(v) {   // 숫자 id 배열만 통과 (중복 제거)
+  return Array.isArray(v) ? v.filter(function (n, i, a) { return typeof n === "number" && isFinite(n) && a.indexOf(n) === i; }) : [];
+}
+function cleanReviews(v) {   // { 운동id: [ {rating, parts, text} ] } 모양만 통과
+  var out = {};
+  if (!v || typeof v !== "object" || Array.isArray(v)) return out;
+  Object.keys(v).forEach(function (k) {
+    if (!Array.isArray(v[k])) return;
+    out[k] = v[k].filter(function (r) { return r && typeof r.rating === "number" && Array.isArray(r.parts); });
+  });
+  return out;
+}
+function loadMine() {   // 현재 계정(또는 손님)의 기록을 S로 불러옴 — 로그인·로그아웃 때마다 다시 호출
+  S.fav = idList(read("fav", []));
+  S.rec = idList(read("rec", []));
+  S.reviews = cleanReviews(read("rev", {}));
+  if (EX.length) { S.fav = validIds(S.fav); S.rec = validIds(S.rec); }
+}
+S.noStore = false;
+loadMine();
+function save() {   // 성공하면 true, 저장이 막힌 브라우저면 false
+  try {
+    localStorage.setItem(keyOf("fav"), JSON.stringify(S.fav));
+    localStorage.setItem(keyOf("rec"), JSON.stringify(S.rec));
+    localStorage.setItem(keyOf("rev"), JSON.stringify(S.reviews));
+    S.noStore = false; return true;
+  } catch (e) { S.noStore = true; return false; }
+}
+function clearMine() {   // 지금 보는 기록(이 계정 또는 손님)의 키만 지움 · localStorage.clear() 사용 안 함 · 계정·로그인 정보는 그대로
+  try { Object.keys(NAME).forEach(function (k) { localStorage.removeItem(keyOf(k)); if (!uid()) localStorage.removeItem(OLD[k]); }); } catch (e) {}
+  S.fav = []; S.rec = []; S.reviews = {};
+}
+function validIds(arr) { return arr.filter(get); }   // JSON에서 사라진 id는 건너뜀
+try { localStorage.setItem("coreseek-test", "1"); localStorage.removeItem("coreseek-test"); } catch (e) { S.noStore = true; }
 
 /* ---------- 외부 데이터 값 → 한국어 ---------- */
 var MUSCLE = { abdominals:"복근", abductors:"엉덩이 바깥", adductors:"허벅지 안쪽", biceps:"이두근", calves:"종아리", chest:"가슴", forearms:"전완근",
@@ -120,10 +163,14 @@ function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&
 /* 썸네일 태그: 누르면 그 조건으로 바로 필터 (선택된 태그는 진하게) */
 function tagBtn(key, v) { return '<button class="bd' + (S.f[key].indexOf(v) >= 0 ? " on" : "") + '" data-tagf="' + key + ":" + v + '" aria-label="' + v + ' 운동만 보기">' + esc(v) + "</button>"; }
 function bds(x) { return tagBtn("p", x.category) + tagBtn("l", x.difficulty) + tagBtn("e", x.equipment); }
-function card(x, del) {
-  return '<div class="card" data-go="detail" data-id="' + x.id + '"><div class="img"><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지" loading="lazy"></div>'
-    + '<div class="ci"><b>' + esc(x.name) + "</b><div>" + bds(x) + "</div></div>"
-    + (del ? '<button class="del" data-del="' + x.id + '">삭제</button>' : "") + "</div>";
+/* 저장 하트: 카드·타일·상세가 모두 이 함수 하나로 S.fav를 보고 그림 (화면 간 표시가 어긋나지 않음) */
+function heart(x) {
+  var on = S.fav.indexOf(x.id) >= 0;
+  return '<button class="heart' + (on ? " on" : "") + '" data-save="' + x.id + '" aria-pressed="' + on + '" aria-label="' + esc(x.name) + (on ? " 저장 해제" : " 저장") + '">' + (on ? "♥" : "♡") + "</button>";
+}
+function card(x) {
+  return '<div class="card" role="button" tabindex="0" data-go="detail" data-id="' + x.id + '"><div class="img"><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지" loading="lazy"></div>'
+    + '<div class="ci"><b>' + esc(x.name) + "</b><div>" + bds(x) + "</div></div>" + heart(x) + "</div>";
 }
 function empty(t, d, b) { return '<div class="empty"><b>' + t + "</b>" + d + (b || "") + "</div>"; }
 function grp(label, key, arr) {
@@ -143,7 +190,6 @@ function apiNote() {
   return "";
 }
 function items(a) { return (a && a.length) ? a.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") : ""; }
-function tag() { return ""; }   // v0.5: 실제/더미 표시는 화면에서 숨김 (데이터의 meta에는 그대로 기록)
 
 /* ---------- 결과 목록 (9주차 renderList: 건수·카드·결과 없음을 한 번에) ---------- */
 function listHTML() {
@@ -184,8 +230,8 @@ function homePicks(n) {
 }
 /* 홈 전용 2열 타일 카드 */
 function tile(x) {
-  return '<div class="tile" data-go="detail" data-id="' + x.id + '"><div class="img"><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지" loading="lazy"></div>'
-    + "<b>" + esc(x.name) + "</b><div>" + bds(x) + "</div></div>";
+  return '<div class="tile" role="button" tabindex="0" data-go="detail" data-id="' + x.id + '"><div class="img"><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지" loading="lazy"></div>'
+    + "<b>" + esc(x.name) + "</b><div>" + bds(x) + "</div>" + heart(x) + "</div>";
 }
 /* 상세 상단 별점 한 줄 */
 function rateLine(x) {
@@ -259,6 +305,7 @@ function login(id, pw) {
 function setUser(id) {
   auth.user = id ? { id: id, at: new Date().toISOString() } : null;
   try { if (id) localStorage.setItem("coreseekSession", JSON.stringify(auth.user)); else localStorage.removeItem("coreseekSession"); } catch (e) {}
+  loadMine();   // 계정마다 저장함이 따로이므로 로그인·로그아웃 때 그 계정의 기록으로 바꿈
 }
 function authMsg(t, ok) { var m = document.querySelector("#auth-msg"); if (m) { m.textContent = t; m.className = ok ? "ok" : "err"; } }
 function accountHTML() {
@@ -280,6 +327,7 @@ function accountHTML() {
 var menuBody = document.querySelector("#menu-body");
 function openAuth(tab) {
   auth.tab = tab || "login";
+  var pt = document.querySelector("#panel-title"); if (pt) pt.textContent = auth.user ? "내 계정" : auth.tab === "signup" ? "회원가입" : "로그인";
   menuBody.innerHTML = accountHTML();
   menuList.classList.add("open");
   var f = menuBody.querySelector("input[name=id]"); if (f) setTimeout(function () { if (menuList.classList.contains("open")) f.focus({ preventScroll: true }); }, 250);
@@ -297,8 +345,8 @@ function toast(t) {
 /* 보관함 아래: 내 기록 관리 (전체 메뉴에서 옮겨 옴) */
 function recordsHTML() {
   var nRev = Object.keys(S.reviews).reduce(function (s, k) { return s + S.reviews[k].length; }, 0);
-  var has = S.fav.length + S.rec.length + nRev;
-  return '<section class="records"><h3>내 기록</h3><div class="mine"><span><b>' + S.fav.length + '</b>저장한 운동</span><span><b>' + S.rec.length + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
+  var nFav = validIds(S.fav).length, nRec = validIds(S.rec).length, has = nFav + nRec + nRev;
+  return '<section class="records"><h3>내 기록' + (auth.user ? ' <small>' + esc(auth.user.id) + '님</small>' : ' <small>로그인 전</small>') + '</h3><div class="mine"><span><b>' + nFav + '</b>저장한 운동</span><span><b>' + nRec + '</b>최근 본 운동</span><span><b>' + nRev + "</b>남긴 후기</span></div>"
     + (has ? '<button class="wipe' + (S.wipe ? " on" : "") + '" data-wipe>' + (S.wipe ? "한 번 더 누르면 모두 지워져요" : "기록 지우기") + "</button>"
            : "")
     + "</section>";
@@ -330,22 +378,23 @@ var VIEWS = {
   detail: function () {
     var x = get(S.id);
     if (!x) return empty("이 운동을 찾지 못했어요", "목록으로 돌아가서 다시 골라 주세요.", '<br><button data-go="explore">목록으로</button>');
-    var on = S.fav.indexOf(x.id) >= 0, m = x.meta || {}, unk = (m.unknown || []).length;
-    return '<button class="back" data-back aria-label="이전 화면으로">‹ 이전</button><div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지"></div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div>' + bds(x) + "</div>"
+    var on = S.fav.indexOf(x.id) >= 0;
+    return '<button class="back" data-back aria-label="이전 화면으로">‹ 이전</button><div class="hero"><span class="bg" style="background-image:url(\'' + esc(x.image) + '\')"></span><img src="' + esc(x.image) + '" alt="' + esc(x.name) + ' 대표 이미지">' + heart(x) + '</div><h2 class="title">' + esc(x.name) + '</h2><div class="eng">' + esc(x.engName) + '</div><div>' + bds(x) + "</div>"
       + rateLine(x)
-      + '<p class="desc">' + (x.description ? esc(x.description) + tag(m, "description") : '<span class="none">아직 설명이 없어요.</span>') + "</p>"
+      + '<p class="desc">' + (x.description ? esc(x.description) : '<span class="none">아직 설명이 없어요.</span>') + "</p>"
       + (x.api ? '<h3><span>쓰는 근육</span></h3><ul><li>주로 ' + esc(x.primary.join(", ")) + eul(x.primary[x.primary.length - 1]) + " 써요</li>" + (x.secondary.length ? "<li>" + esc(x.secondary.join(", ")) + "도 같이 써요</li>" : "") + ([x.force, x.mechanic].filter(Boolean).length ? "<li>" + esc([x.force, x.mechanic].filter(Boolean).join(", ")) + " 운동이에요</li>" : "") + "</ul>" : "")
-      + "<h3><span>기구 맞추기" + tag(m, "setup") + "</span></h3>" + (x.setup && x.setup.length ? "<ul>" + items(x.setup) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
-      + "<h3><span>운동 방법" + tag(m, "steps") + "</span></h3>" + "" + "<ol>" + items(x.steps) + "</ol>"
-      + "<h3><span>이것만 조심하세요" + tag(m, "tips") + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
+      + "<h3><span>기구 맞추기" + "</span></h3>" + (x.setup && x.setup.length ? "<ul>" + items(x.setup) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
+      + "<h3><span>운동 방법" + "</span></h3>" + "" + "<ol>" + items(x.steps) + "</ol>"
+      + "<h3><span>이것만 조심하세요" + "</span></h3>" + (x.tips && x.tips.length ? "<ul>" + items(x.tips) + "</ul>" : '<p class="none">아직 정리된 내용이 없어요.</p>')
       + reviewBox(x)
       + '<button class="save' + (on ? " on" : "") + '" data-save="' + x.id + '">' + (on ? "★ 저장했어요" : "☆ 저장해 두기") + "</button>"
       ;
   },
   my: function () {
-    var f = S.tab == "favs", ids = (f ? S.fav : S.rec).filter(function (i) { return get(i); });
-    return '<div class="tabs"><button data-tab="favs" class="' + (f ? "on" : "") + '">관심 운동</button><button data-tab="recent" class="' + (f ? "" : "on") + '">최근 본 운동</button></div>'
-      + (ids.length ? ids.map(function (i) { return card(get(i), f); }).join("") : empty(f ? "아직 저장한 운동이 없어요" : "아직 본 운동이 없어요", f ? "마음에 드는 운동을 저장해 두면 여기서 바로 꺼내 볼 수 있어요." : "운동을 열어 보면 여기에 하나씩 남아요.", '<br><button data-go="explore">운동 둘러보기</button>'))
+    var f = S.tab == "favs", favIds = validIds(S.fav), recIds = validIds(S.rec), ids = f ? favIds : recIds;
+    return '<div class="tabs"><button data-tab="favs" class="' + (f ? "on" : "") + '">관심 운동 ' + favIds.length + '</button><button data-tab="recent" class="' + (f ? "" : "on") + '">최근 본 운동 ' + recIds.length + '</button></div>'
+      + (S.noStore ? '<p class="note">이 브라우저에서는 저장 기능을 사용할 수 없어요. 탐색과 상세는 그대로 쓸 수 있어요.</p>' : "")
+      + (ids.length ? ids.map(function (i) { return card(get(i)); }).join("") : empty(f ? "아직 저장한 운동이 없어요" : "아직 본 운동이 없어요", f ? "마음에 드는 운동을 저장해 두면 여기서 바로 꺼내 볼 수 있어요." : "운동을 열어 보면 여기에 하나씩 남아요.", '<br><button data-go="explore">운동 둘러보기</button>'))
       + recordsHTML();
   }
 };
@@ -370,7 +419,7 @@ function loadData() {
   S.load = "loading"; render();
   fetch(DATA_URL, { cache: "no-cache" })   // 항상 최신 JSON 확인
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (d) { EX = d; S.load = "ok"; console.log("[코어시크] 저장 JSON " + EX.length + "건"); render(); loadApi(); })
+    .then(function (d) { EX = d; S.load = "ok"; loadMine(); save(); render(); loadApi(); })
     .catch(function () { S.load = "error"; render(); });
 }
 /* 외부 데이터 호출: 화면은 먼저 보여주고, 도착하면 근육·동작 정보를 붙임 */
@@ -388,15 +437,24 @@ function loadApi() {
         x.muscles = x.primary.concat(x.secondary);
         x.force = FORCE[o.force] || null; x.mechanic = MECH[o.mechanic] || null; x.api = true; n++;
       });
-      S.api = "ok"; console.log("[코어시크] 외부 데이터 연동 " + n + "건");
+      S.api = "ok";
       if (S.scr === "explore" || S.scr === "detail") render();
     })
     .catch(function (err) { S.api = "error"; console.warn("[코어시크] 외부 데이터 호출 실패", err); if (S.scr === "explore") render(); });
 }
 
+/* 저장 하트 한 번 누르기: ① 읽기(S.fav) → ② 추가·제거 → ③ save() → ④ 화면 다시 그리기(스크롤 유지) + 알림 */
+function toggleFav(id) {
+  var k = S.fav.indexOf(id);
+  if (k >= 0) S.fav.splice(k, 1); else S.fav.unshift(id);
+  var ok = save();
+  render(true);
+  toast(!ok ? "이 브라우저에서는 저장되지 않아요" : k >= 0 ? "저장을 해제했어요" : "관심 운동에 저장했어요");
+}
+
 function go(s, id) {
   if (s == "detail" && S.scr != "detail") S.back = { scr: S.scr, top: screenView.scrollTop };   // 상세에서 돌아갈 화면과 스크롤 위치
-  S.scr = s; S.limit = PAGE;
+  S.scr = s; S.limit = PAGE; S.wipe = false;
   if (s == "detail") { if (S.id !== +id) S.draft = { star: 0, parts: [], text: "" }; S.id = +id; S.rec = [S.id].concat(S.rec.filter(function (i) { return i != S.id; })).slice(0, 10); save(); }
   menuList.classList.remove("open"); render();
 }
@@ -407,7 +465,7 @@ function resetAll() { S.f = { p: [], l: [], e: [] }; S.filters = []; S.q = ""; S
 
 /* ---------- 이벤트 → 상태 변경 → 다시 그리기 ---------- */
 document.addEventListener("click", function (e) {
-  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-del],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn]");
+  var t = e.target.closest("[data-go],[data-part],[data-f],[data-tagf],[data-filter],[data-unset],[data-tab],[data-save],[data-reset],[data-menu],[data-level],[data-equip],[data-mytab],[data-more],[data-retry],[data-api],[data-fold],[data-back],[data-sortgo],[data-star],[data-rpart],[data-rsend],[data-rdel],[data-wipe],[data-authtab],[data-authbtn]");
   if (!t) return;
   var d = t.dataset;
   if (d.retry !== undefined) { loadData(); return; }
@@ -423,8 +481,7 @@ document.addEventListener("click", function (e) {
   if (d.rdel) { (S.reviews[S.id] || []).splice(+d.rdel, 1); save(); render(true); return; }
   if (d.api !== undefined) { loadApi(); return; }
   if (d.more !== undefined) { S.limit += PAGE; renderList(); return; }
-  if (d.del) { e.stopPropagation(); S.fav = S.fav.filter(function (i) { return i != d.del; }); save(); render(); return; }
-  if (d.save) { var i = +d.save, k = S.fav.indexOf(i); if (k >= 0) S.fav.splice(k, 1); else S.fav.unshift(i); save(); render(); return; }
+  if (d.save) { toggleFav(+d.save); return; }
   if (d.menu !== undefined) { closeAuth(); return; }   // 바깥 어두운 부분이나 ✕
   if (d.authbtn !== undefined) {
     if (auth.user) { var who = auth.user.id; setUser(null); render(true); toast(who + "님, 로그아웃했어요"); }
@@ -434,7 +491,7 @@ document.addEventListener("click", function (e) {
   if (d.authtab) { openAuth(d.authtab); return; }
   if (d.wipe !== undefined) {   // 두 번 눌러야 지워지게 (실수 방지)
     if (!S.wipe) { S.wipe = true; render(true); return; }
-    S.fav = []; S.rec = []; S.reviews = {}; S.wipe = false; save(); render(true); toast("기록을 모두 지웠어요"); return;
+    clearMine(); S.wipe = false; render(true); toast("기록을 모두 지웠어요"); return;
   }
   if (d.level) { only("l", d.level); return; }
   if (d.equip) { only("e", d.equip); return; }
@@ -478,8 +535,8 @@ document.addEventListener("submit", function (e) {
     .catch(function (err) { authMsg(err && err.message && err.message.indexOf("안전하게") >= 0 ? err.message : "연결에 실패했어요. 잠시 뒤 다시 시도해 주세요."); console.warn("[코어시크] 계정 처리 실패", err); })
     .then(function () { auth.busy = false; var b = f.querySelector("button[type=submit]"); if (b) b.disabled = false; });
 });
-/* 순위 줄은 키보드 Enter로도 열기 */
-document.addEventListener("keyup", function (e) { if (e.key === "Enter" && e.target.matches && e.target.matches(".rank li")) e.target.click(); });
+/* 순위 줄, 카드, 타일은 키보드 Enter로도 열기 */
+document.addEventListener("keyup", function (e) { if (e.key === "Enter" && e.target.matches && e.target.matches(".rank li, .card, .tile")) e.target.click(); });
 document.addEventListener("input", function (e) {
   if (e.target.id === "search-input") { S.q = e.target.value; renderList(true); }
   if (e.target.id === "review-text") { S.draft.text = e.target.value; }   // 후기 입력은 다시 그리지 않음
