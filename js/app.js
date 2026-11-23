@@ -398,7 +398,7 @@ var VIEWS = {
       + '<div class="ask"><b>오늘은 어디를 운동할까요?</b><input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색"></div></section>'
       + '<h3>요즘 많이 찾는 부위</h3><ol class="rank">' + agg.map(function (o, k) {
           var w = hi == lo ? 100 : Math.round(30 + (o.sum - lo) / (hi - lo) * 70);   // 가장 낮은 부위도 보이게 30%부터
-          return '<li role="button" tabindex="0" aria-label="' + (k + 1) + '위 ' + o.p + ' 운동 보러 가기" data-part="' + o.p + '"><em>' + (k + 1) + '</em><span class="rk-name">' + o.p + '<small>운동 ' + o.n + '개</small></span>'
+          return '<li role="button" tabindex="0" aria-label="' + (k + 1) + '위 ' + o.p + ' 운동 보러 가기" data-part="' + o.p + '"><em>' + (k + 1) + '</em><span class="rk-name">' + o.p + '</span>'
             + '<span class="rk-bar p' + o.i + '"><i style="width:' + w + '%"></i></span><span class="rk-fav" aria-label="' + o.sum.toLocaleString() + '명 저장">♥ ' + o.sum.toLocaleString() + '</span><span class="rk-go" aria-hidden="true">›</span></li>';
         }).join("") + '</ol>'
       + '<h3>처음이라면 이 운동부터<a data-go="explore">전체 보기</a></h3><div class="grid">' + rec.map(tile).join("") + "</div>";
