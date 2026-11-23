@@ -348,7 +348,7 @@ function openAuth(tab) {
 function askLogout() {
   var d = document.querySelector("#logout-ask");
   if (!d) { d = document.createElement("div"); d.id = "logout-ask"; document.body.appendChild(d); }
-  d.innerHTML = '<div class="scrim" data-lo-no></div><div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="lo-t"><b id="lo-t">로그아웃하시겠습니까?</b><p>' + esc(who()) + '님의 기록은 이 기기에 그대로 남아요.</p><div class="row2"><button data-lo-no>취소</button><button class="primary" data-lo-yes>로그아웃</button></div></div>';
+  d.innerHTML = '<div class="scrim" data-lo-no></div><div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="lo-t"><b id="lo-t">로그아웃하시겠습니까?</b><div class="row2"><button data-lo-no>아니요</button><button class="primary" data-lo-yes>네</button></div></div>';
   d.className = "open"; var y = d.querySelector("[data-lo-yes]"); if (y) y.focus({ preventScroll: true });
 }
 function closeAsk() { var d = document.querySelector("#logout-ask"); if (d) d.className = ""; }
@@ -394,9 +394,8 @@ var VIEWS = {
     }).filter(function (o) { return o.n; }).sort(function (u, v) { return v.sum - u.sum; });
     var hi = agg.length ? agg[0].sum : 1, lo = agg.length ? agg[agg.length - 1].sum : 0;
     /* 첫 화면: 질문 → 검색 → 비주얼 → 부위 색 안내 */
-    return '<section class="hello"><b>오늘은 어디를 운동할까요?</b>'
-      + '<input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색"></section>'
-      + '<div class="vis" aria-hidden="true">' + shots.map(function (x, i) { return '<span class="slide" style="background-image:url(\'' + esc(x.image) + '\');animation-delay:' + (i * 5) + 's"></span>'; }).join("") + '<i class="shade"></i><p><b>코어시크</b>처음이어도 괜찮아요</p></div>'
+    return '<section class="vis"><div class="slides" aria-hidden="true">' + shots.map(function (x, i) { return '<span class="slide" style="background-image:url(\'' + esc(x.image) + '\');animation-delay:' + (i * 5) + 's"></span>'; }).join("") + '</div><i class="shade"></i>'
+      + '<div class="ask"><b>오늘은 어디를 운동할까요?</b><input class="in" id="home-search" data-s placeholder="🔍 운동 검색" aria-label="운동 검색"></div></section>'
       + '<h3>요즘 많이 찾는 부위</h3><ol class="rank">' + agg.map(function (o, k) {
           var w = hi == lo ? 100 : Math.round(30 + (o.sum - lo) / (hi - lo) * 70);   // 가장 낮은 부위도 보이게 30%부터
           return '<li role="button" tabindex="0" aria-label="' + (k + 1) + '위 ' + o.p + ' 운동 보러 가기" data-part="' + o.p + '"><em>' + (k + 1) + '</em><span class="rk-name">' + o.p + '<small>운동 ' + o.n + '개</small></span>'
@@ -449,7 +448,7 @@ function render(keepScroll) {
   screenView.innerHTML = VIEWS[S.scr]();
   if (typing) { var si = document.querySelector("#search-input"); if (si) { si.focus(); si.setSelectionRange(si.value.length, si.value.length); } }   // 입력 중이면 커서 유지
   var ab = document.querySelector(".auth-btn");   // 오른쪽 위: 로그인 ↔ 로그아웃
-  if (ab) { ab.innerHTML = USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? who() + "님, 로그아웃" : "로그인 또는 회원가입"); }
+  if (ab) { ab.innerHTML = auth.user ? '<span class="nm">' + esc(who()) + '</span><span class="out">로그아웃</span>' : USER_ICON; ab.classList.toggle("signed", !!auth.user); ab.setAttribute("aria-label", auth.user ? "로그아웃" : "로그인 또는 회원가입"); }
   var navOn = S.scr == "detail" ? "explore" : S.scr;
   Array.prototype.forEach.call(bottomNav.children, function (b) { b.className = b.getAttribute("data-go") == navOn ? "on" : ""; });
   if (!keepScroll) screenView.scrollTop = 0;
