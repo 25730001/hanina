@@ -615,7 +615,7 @@ function reviewBox(x) {
    SHEET_URL이 비어 있으면 계정을 이 브라우저(localStorage)에 저장하고,
    구글 Apps Script 웹 앱 주소를 넣으면 구글 시트에 저장합니다. (server/README.md 참고)
    비밀번호는 그대로 저장하지 않고 SHA-256 해시로 바꿔 저장합니다. */
-var SHEET_URL = "";
+var SHEET_URL = "https://script.google.com/macros/s/AKfycbwOqRirib2znU4CevCifR8v5aTTHbya2hsr0KHYJYIKiEa19zzkPas4G1AjHoLlmrtB/exec";   // 구글 시트 coreseek-users에 연결됨 (비우면 이 브라우저에만 저장)
 var auth = { user: null, tab: "login", busy: false };
 try { auth.user = JSON.parse(localStorage.getItem("coreseekSession") || "null"); } catch (e) {}
 var ID_RULE = /^[a-z0-9_]{4,20}$/, PW_RULE = /^(?=.*[A-Za-z])(?=.*\d).{8,32}$/;

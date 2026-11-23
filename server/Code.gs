@@ -8,6 +8,7 @@
  * 설정 방법은 server/README.md를 보세요.
  */
 
+const SPREADSHEET_ID = '';   // 시트에서 연 Apps Script(확장 프로그램 → Apps Script)면 비워 두세요. 따로 만든 프로젝트면 시트 주소의 /d/ 와 /edit 사이 값을 넣으세요.
 const SHEET_NAME = 'users';
 const ID_RULE = /^[a-z0-9_]{4,20}$/;
 const PW_RULE = /^(?=.*[A-Za-z])(?=.*\d).{8,32}$/;
@@ -55,7 +56,7 @@ function doGet() {
 }
 
 function getSheet() {
-  const book = SpreadsheetApp.getActiveSpreadsheet();
+  const book = SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
   let sheet = book.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = book.insertSheet(SHEET_NAME);
